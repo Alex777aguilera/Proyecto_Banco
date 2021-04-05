@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Principal</title>
+	<title>Pago Cuota</title>
 </head>
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
@@ -33,7 +33,47 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-	     	
+	     	<?php
+                    
+                        require_once "conexion.php";
+                        // WHERE n.nacionalidad = '$busqueda'
+                        $sql = "SELECT * FROM pagoletra";
+                        if($result = mysqli_query($con, $sql)){
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                echo "<table class='table table-bordered table-striped'>";
+                                    echo "<thead>";
+                                        echo "<tr>";
+                                            echo "<th>ID</th>";
+                                            echo "<th>Prestamo</th>";
+                                            echo "<th>Monto Pagado</th>";
+                                            echo "<th>Fecha de pago</th>";
+                                            echo "<th>Acción</th>";
+                                        echo "</tr>";
+                                    echo "</thead>";
+                                    echo "<tbody>";
+                                    while($row = mysqli_fetch_array($result)){
+                                        echo "<tr>";
+                                        echo "<td>" . $row['idPagoLetra'] . "</td>";
+                                        echo "<td>" . $row['idPlanPago'] . "</td>";
+                                        echo "<td>" . $row['montoPagado'] . "</td>";
+                                        echo "<td>" . $row['fechaPago'] . "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#' title='Ver' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                            echo "<a href='#' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='#' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "</td>";
+                                    }
+                                    echo "</tbody>";
+                                echo "</table>";
+
+                                mysqli_free_result($result);;
+                            }else{
+                                echo "<p class='lead'><em>No hay regitros</em></p>";
+                            }
+                        }
+                        mysqli_close($con);
+                    ?>
 	    </div>
         <!--  -->
 
