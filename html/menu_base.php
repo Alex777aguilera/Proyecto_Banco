@@ -206,6 +206,12 @@
                                 <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> login
                                         </span></a></li>
+                                 <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="pago_cuota.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
+                                        </span></a></li>
                             </ul>
                         </li>
                     </ul>
