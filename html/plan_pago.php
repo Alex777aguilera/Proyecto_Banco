@@ -30,74 +30,94 @@
                     </div>
                 </div>
             </div>
+            <br>
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="plan_pago.php" method="POST">
                                 <div class="card-body">
                                     <h4 class="card-title">Transaccion</h4>
                                     <div class="row mb-3">
-
-                                    <label class="col-md-3 mt-3">Single Select</label>
-                                    <div class="col-md-3">
-                                        <select class="select2 form-select shadow-none"
+                                        <hr>
+                                    <label for="lname" class="col-md-2 control-label col-form-label">Prestamo</label>
+                                    <div class="col-md-4">
+                                        <select class="select2 form-select shadow-none" name="prestamo" id="prestamo" onchange="dato(this.value);" 
                                             style="width: 100%; height:36px;">
                                             <?php 
-                                            require_once "conexion.php";
-                                            $query ="SELECT * FROM `prestamos` as p INNER JOIN cuenta as c ON p.idCuenta = c.idCuenta";                                           while ($valores = mysqli_fetch_array($query))  {
-                                            echo "<option>Select</option>";
-                                            echo "<optgroup label='Prestamos'>";
-                                            echo '<option value="'.$valores[idPrestamo].'">'.$valores[idPrestamo].'</option>';
-                                            echo "</optgroup>";
-                                            }
-                                             ?>
-                                           
+                                                require_once "conexion.php";
+                                                
+
+                                                $query = $db->prepare("SELECT * FROM `prestamos` as pr 
+                                                    INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta
+                                                    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente");
+                                               
+                                                $query->execute();
+                                                $data = $query->fetchAll();
+
+                                                 foreach ($data as $valores) {
+                                                     echo "<option>--- Seleccione ---</option>";
+                                                     echo "<optgroup label='Prestamos'>";
+                                                     echo '<option value='.$valores[idPrestamo].'>'.$valores[idPrestamo].'-'.$valores[nombres].'-'.$valores[numeroCuenta]. '</option>';
+                                                     echo "</optgroup>";
+                                                    }
+                                            ?>  
                                         </select>
                                     </div>
-                                    <label for="lname" class="col-sm-3 control-label col-form-label">Last
-                                            Name</label>
+                                    <label for="lname" class="col-md-2 control-label col-form-label">Monto</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="lname"
-                                                placeholder="Last Name Here">
+                                            <input type="text" class="form-control" id="monto" onkeypress="return soloNumeros(event)"
+                                                placeholder="Monto..." name="monto">
                                         </div>
                                 </div>
                                     
                                     <div class="row mb-3">
                                         <label for="lname"
-                                            class="col-sm-3 control-label col-form-label">Password</label>
+                                            class="col-sm-3 control-label col-form-label">Intereses</label>
                                         <div class="col-md-3">
-                                            <input type="password" class="form-control" id="lname"
-                                                placeholder="Password Here">
+                                            <input type="text" class="form-control" id="intereses" onkeypress="return soloNumeros(event)"
+                                                placeholder="Intereses" name="intereses">
                                         </div>
                                     
-                                        <label for="email1"
-                                            class="col-sm-3 control-label col-form-label">Company</label>
+                                        <label for="lname" class="col-md-2 control-label col-form-label">Letra Mensual</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="email1"
-                                                placeholder="Company Name Here">
+                                            <input type="text" class="form-control" id="Lmensual" name="Lmensual" onkeypress="return soloNumeros(event)" 
+                                                placeholder="Letra mensual..">
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row mb-3">
-                                        <label for="cono1"
-                                            class="col-sm-3 control-label col-form-label">Contact No</label>
+                                
+                                        <label for="lname"
+                                            class="col-sm-3 control-label col-form-label">Fecha de Pago</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="cono1"
-                                                placeholder="Contact No Here">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="datepicker-autoclose"
+                                                    placeholder="mm/dd/yyyy" name="fecha_pago">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text h-100"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    
-                                        <label for="cono1"
-                                            class="col-sm-3 control-label col-form-label">Message</label>
-                                        <div class="col-md-3">
-                                            <textarea class="form-control"></textarea>
+                                               
+                                        <label class="col-md-3">Estado letra</label>
+                                        <div  for="lname" class="col-lg-2 control-label col-form-label">
+                                            <select class="select2 form-select shadow-none"
+                                                style="width: 100%; height:36px;" name="Eletra">
+                                                <option>--- Seleccione ---</option>
+                                                <optgroup label="Estado">
+                                                    <option value="0">Activo</option>
+                                                    <option value="1">Inactivo</option>
+                                                </optgroup>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Agregar</button>
+                                        <button class="btn btn-primary">Agregar</button>
                                     </div>
                                 </div>
                             </form>
@@ -105,6 +125,47 @@
                 </div>
             </div>
 	     	<?php
+// Registro
+// $prestamo = 0;
+// $monto = 0;
+// $intereses = 0;
+// $LetraMensual = 0;
+// $fechaPago = 0;
+// $EstadoLetra = 0;
+// $registro = 0;
+
+if ($_POST == true) {
+        // Validaciones de campos bacios
+
+        if (empty($_POST['prestamo']) == false && empty($_POST['monto']) == false && empty($_POST['intereses']) == false && empty($_POST['Lmensual']) == false && empty($_POST['fecha_pago']) == false && empty($_POST['Eletra']) == false ) {
+            echo "entro";
+            $prestamo = $_POST['prestamo'];
+            $monto = $_POST['monto'];
+            $intereses = $_POST['intereses'];
+            $LetraMensual = $_POST['Lmensual'];
+            $fechaPago = $_POST['fecha_pago'];
+            $EstadoLetra = $_POST['Eletra'];
+            // Query registro
+             $query_registro = $db->prepare("INSERT INTO `plandepago` (`idPrestamo`, `monto`, `intereses`, `letraMensual`, `fechaPago`, `estadoLetra`) VALUES ('$prestamo', '$monto', '$intereses', '$LetraMensual', '$fechaPago', '$EstadoLetra')"); 
+
+            if (mysqli_query($query_registro) ){
+            echo "<p>Registro agregado.</p>"; 
+            } else {
+            echo "<p>No se agregó...</p>";
+            }
+         
+            
+            
+
+        }else{
+            echo "no entro";
+        }
+
+        
+    }
+
+// Fin Registro
+                        // Tabla registros
                         $sql = "SELECT * FROM plandepago";
                         if($result = mysqli_query($con, $sql)){
                             if(mysqli_num_rows($result) > 0)
@@ -161,6 +222,37 @@
 </html>
 
 <script>
+
+function dato(valor) {
+    
+alert(valor);
+    
+}
+
+function soloNumeros(e)
+{
+    var key = e.keycode || e.which;
+    var tecla = String.fromCharCode(key).toLowerCase();
+    numeros = ".0123456789";
+    especiales = [44, 45, 46];
+    tecla_especial = false;
+
+    for(var i in especiales)
+    {
+        if(key == especiales)
+        {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(numeros.indexOf(tecla) == -1 && !tecla_especial)
+    {
+
+        return false;
+    }
+
+}
         //***********************************//
         // For select 2
         //***********************************//
@@ -198,9 +290,7 @@
             autoclose: true,
             todayHighlight: true
         });
-        var quill = new Quill('#editor', {
-            theme: 'snow'
-        });
+        
 
     </script>
 
