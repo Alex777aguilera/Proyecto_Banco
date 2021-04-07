@@ -31,9 +31,90 @@
                 </div>
             </div>
 
+            
+          
+
+        <!-- Parte en donde se trabajara -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                        <div class="card">
+                            <form class="form-horizontal">
+                                <div class="card-body">
+                                    <h4 class="card-title">REGISTRE SU CUOTA</h4>
+                                    <div class="row mb-3">
+
+                                    <label class="col-md-2 mt-2" >Seleccione Prestamo: </label>
+                                    <div class="col-md-3">
+
+                                        <select class="select2 form-select shadow-none"
+                                            style="width: 100%; height:36px;" name="planpago">
+                                            <?php 
+                                            require_once "conexion.php";
+                                            $query ="SELECT * FROM `prestamos` as p INNER JOIN cuenta as c ON p.idCuenta = c.idCuenta";
+
+
+
+
+                                            SELECT pp.idPlanPago, pp. 
+                                            FROM pagoletra AS pl 
+                                            INNER JOIN plandepago AS c ON pp.idPlanPago = c.idPlanPago
+                                            INNER JOIN registrocliente AS rc ON pl.idPlanPago = pp.idPlanPago
+                                            INNER JOIN plandepago AS pp ON pl.idPlanPago = pp.idPlanPago
+                                            INNER JOIN cuenta AS c ON pp.idPlanPago = c.idPlanPago"
+                                            while ($valores = mysqli_fetch_array($query))  {
+                                            echo "<option>Select</option>";
+                                            echo "<optgroup label='Prestamos'>";
+                                            echo '<option value="'.$valores[idPrestamo].'">'.$valores[idPrestamo].'</option>';
+                                            echo "</optgroup>";
+                                            }
+                                             ?>
+                                           
+                                        </select>
+
+                                    </div>
+                                    
+                                    <label for="lname"
+                                            class="col-sm-1 control-label col-form-label">Monto a Pagar: </label>
+                                        <div class="col-md-3">
+                                            <input type="password" class="form-control" id="monto"
+                                                placeholder="monto" name="monto">
+                                        </div>
+
+                                </div>
+                                    
+                                    <div class="row-lg-10">
+                                        
+                                        <div class="col-lg-3">
+                                            <label for="lname"
+                                            class="col-sm-8 control-label col-form-label" >Fecha de la Cuota</label>
+                                            
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="datepicker-autoclose"
+                                                    placeholder="mm/dd/yyyy">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text h-100"><i class="fa fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary">Agregar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-            <h3>Este es el Pago Cuota</h3>
+            
 	     	<?php
                     
                         require_once "conexion.php";
