@@ -33,6 +33,7 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
+            <h3>Este es el Pago Cuota</h3>
 	     	<?php
                     
                         require_once "conexion.php";
