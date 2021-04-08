@@ -10,7 +10,6 @@
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 	<?php require_once('menu_base.php'); ?>	
 
-
     <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->

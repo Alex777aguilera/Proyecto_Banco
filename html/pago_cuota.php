@@ -49,26 +49,25 @@
 
                                         <select class="select2 form-select shadow-none"
                                             style="width: 100%; height:36px;" name="planpago">
+
                                             <?php 
-                                            require_once "conexion.php";
-                                            $query ="SELECT * FROM `prestamos` as p INNER JOIN cuenta as c ON p.idCuenta = c.idCuenta";
+                                                require_once "conexion.php";
+                                                
 
+                                                $query = $db->prepare("SELECT * FROM `prestamos` as pr 
+                                                    INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta
+                                                    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente");
+                                               
+                                                $query->execute();
+                                                $data = $query->fetchAll();
 
-
-
-                                            SELECT pp.idPlanPago, pp. 
-                                            FROM pagoletra AS pl 
-                                            INNER JOIN plandepago AS c ON pp.idPlanPago = c.idPlanPago
-                                            INNER JOIN registrocliente AS rc ON pl.idPlanPago = pp.idPlanPago
-                                            INNER JOIN plandepago AS pp ON pl.idPlanPago = pp.idPlanPago
-                                            INNER JOIN cuenta AS c ON pp.idPlanPago = c.idPlanPago"
-                                            while ($valores = mysqli_fetch_array($query))  {
-                                            echo "<option>Select</option>";
-                                            echo "<optgroup label='Prestamos'>";
-                                            echo '<option value="'.$valores[idPrestamo].'">'.$valores[idPrestamo].'</option>';
-                                            echo "</optgroup>";
-                                            }
-                                             ?>
+                                                 foreach ($data as $valores) {
+                                                     echo "<option>--- Seleccione ---</option>";
+                                                     echo "<optgroup label='Prestamos'>";
+                                                     echo '<option value='.$valores[idPrestamo].'>'.$valores[idPrestamo].'-'.$valores[nombres].'-'.$valores[numeroCuenta]. '</option>';
+                                                     echo "</optgroup>";
+                                                    }
+                                            ?>  
                                            
                                         </select>
 
@@ -119,35 +118,43 @@
                     
                         require_once "conexion.php";
                         // WHERE n.nacionalidad = '$busqueda'
-                        $sql = "SELECT * FROM pagoletra";
+                        $sql = "SELECT * FROM registrocliente";
                         if($result = mysqli_query($con, $sql)){
                             if(mysqli_num_rows($result) > 0)
                             {
-                                echo "<table class='table table-bordered table-striped'>";
-                                    echo "<thead>";
-                                        echo "<tr>";
-                                            echo "<th>ID</th>";
-                                            echo "<th>Prestamo</th>";
-                                            echo "<th>Monto Pagado</th>";
-                                            echo "<th>Fecha de pago</th>";
-                                            echo "<th>Acción</th>";
-                                        echo "</tr>";
-                                    echo "</thead>";
-                                    echo "<tbody>";
-                                    while($row = mysqli_fetch_array($result)){
-                                        echo "<tr>";
-                                        echo "<td>" . $row['idPagoLetra'] . "</td>";
-                                        echo "<td>" . $row['idPlanPago'] . "</td>";
-                                        echo "<td>" . $row['montoPagado'] . "</td>";
-                                        echo "<td>" . $row['fechaPago'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='#' title='Ver' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='#' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='#' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "</td>";
-                                    }
-                                    echo "</tbody>";
-                                echo "</table>";
+                            echo "<div class='card'>";
+                                echo "<div class='card-body'>";
+                                    echo "<h5 class='card-title'>Basic Datatable</h5>";
+                                        echo "<div class='table-responsive'>";
+                                            echo "<table id='zero_config' class='table table-striped table-bordered'>";
+                                                echo "<thead>";
+                                                    echo "<tr>";
+                                                        echo "<th>ID</th>";
+                                                        echo "<th>Prestamo</th>";
+                                                        echo "<th>Monto Pagado</th>";
+                                                        echo "<th>Fecha de pago</th>";
+                                                        
+                                                    echo "</tr>";
+                                                echo "</thead>";
+                                                echo "<tbody>";
+                                                while($row = mysqli_fetch_array($result)){
+                                                echo "<tr>";
+                                                echo "<td>" . $row['idRegistroCliente'] . "</td>";
+                                                echo "<td>" . $row['nombres'] . "</td>";
+                                                echo "<td>" . $row['apellidos'] . "</td>";
+                                                
+                                                echo "<td>";
+                                                    echo "<a href='#' title='Ver' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                                    echo "<a href='#' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                                    echo "<a href='#' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                                echo "</td>";
+                                            }
+                                            echo "</tbody>";
+                                        echo "</table>";
+
+                                    echo "</div>";
+                                echo "</div>";
+                            echo "</div>";
 
                                 mysqli_free_result($result);;
                             }else{
@@ -169,4 +176,79 @@
 </html>
 
 
+<script>
 
+
+
+$('#zero_config').DataTable();
+
+function dato(valor) {
+    
+alert(valor);
+    
+}
+
+function soloNumeros(e)
+{
+    var key = e.keycode || e.which;
+    var tecla = String.fromCharCode(key).toLowerCase();
+    numeros = ".0123456789";
+    especiales = [44, 45, 46];
+    tecla_especial = false;
+
+    for(var i in especiales)
+    {
+        if(key == especiales)
+        {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(numeros.indexOf(tecla) == -1 && !tecla_especial)
+    {
+
+        return false;
+    }
+
+}
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+
+        /*colorpicker*/
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
+
+                change: function (value, opacity) {
+                    if (!value) return;
+                    if (opacity) value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
+
+        });
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        
+
+    </script>
