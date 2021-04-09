@@ -7,7 +7,8 @@ include("conexion.php");
   
 if (isset($_POST['update'])) {
     
-	$id = $_GET['id'];
+	$id = $_POST['id'];
+    echo $id;
     $descripcion = $_POST['txt_cuenta'];
     $query = "UPDATE tipocuenta set  descripcion = '$descripcion' ";
     $result = mysqli_query($con, $query);
