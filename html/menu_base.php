@@ -206,12 +206,20 @@
                                 <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> login
                                         </span></a></li>
+<<<<<<< HEAD
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Catalogos
+=======
+                                 <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="pago_cuota.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
+>>>>>>> af845570d7a78c0d12c95de51dc43d4a53833d8f
                                         </span></a></li>
                             </ul>
                         </li>

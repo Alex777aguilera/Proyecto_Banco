@@ -13,8 +13,11 @@
     <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
-    
-   
+
+    <!--tables-->
+
+     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="../assets/extra-libs/multicheck/multicheck.css">
     
     
     <!-- Formularios -->
@@ -74,4 +77,9 @@
     <script src="../assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="../assets/libs/quill/dist/quill.min.js"></script>
     <!--  -->
-    
+
+    <!-- tables -->
+
+    <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
