@@ -221,6 +221,12 @@
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
 
                                         </span></a></li>
+                                <li class="sidebar-item"><a href="registrar_cliente.php" class="sidebar-link"><i
+                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Cliente
+                                </span></a></li> 
+                                <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
+                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Lista de Cliente  
+                                </span></a></li>     
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
