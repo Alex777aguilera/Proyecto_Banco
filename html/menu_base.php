@@ -206,13 +206,43 @@
                                 <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> login
                                         </span></a></li>
+
+                                <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
+                                        </span></a></li>
+
+                                <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Catalogos
+
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
                                         </span></a></li>
                                  <li class="sidebar-item"><a href="pago_cuota.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
+
                                         </span></a></li>
+                                <li class="sidebar-item"><a href="registrar_cliente.php" class="sidebar-link"><i
+                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Cliente
+                                </span></a></li> 
+                                <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
+                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Lista de Cliente  
+                                </span></a></li>     
                             </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Empleados</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="empleados_ingresar.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Empleado
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="empleados_modificar.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar datos
+                                            </span></a></li>
+                                </ul>
                         </li>
                     </ul>
                 </nav>
