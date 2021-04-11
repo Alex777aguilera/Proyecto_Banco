@@ -233,7 +233,7 @@
                                     <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
                                             </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_modificar.php" class="sidebar-link"><i
+                                    <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar datos
                                             </span></a></li>
                                 </ul>
