@@ -18,12 +18,10 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Pago Cuota</h4>
+                        <h4 class="page-title">Ahorro a Plazo Fijo</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="principal.php">Principal</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Pago Cuota</li>
                                 </ol>
                             </nav>
                         </div>
@@ -33,48 +31,56 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-	     	<?php
-                    
+            <form action="plazofijo.php" method="post">
+                        <h5 class="page-title">No.Cuenta</h5><input id="cuenta" name="cuenta" type="text" require>
+                        <h5 class="page-title">Monto</h5><input id="monto" name="monto" type="text" require>
+                        <h5 class="page-title">Plazo</h5><input id="plazo" name="plazo" type="number" min=1 max=5 require>
+                        <input type="submit" value="Guardar">
+	     	        <?php
+                    $filtro = 0;
+                    $monto = 0;
+                    $plazo = 0;
+                    $tasa = 0;
                         require_once "conexion.php";
-                        // WHERE n.nacionalidad = '$busqueda'
-                        $sql = "SELECT * FROM pagoletra";
-                        if($result = mysqli_query($con, $sql)){
-                            if(mysqli_num_rows($result) > 0)
-                            {
-                                echo "<table class='table table-bordered table-striped'>";
-                                    echo "<thead>";
-                                        echo "<tr>";
-                                            echo "<th>ID</th>";
-                                            echo "<th>Prestamo</th>";
-                                            echo "<th>Monto Pagado</th>";
-                                            echo "<th>Fecha de pago</th>";
-                                            echo "<th>Acción</th>";
-                                        echo "</tr>";
-                                    echo "</thead>";
-                                    echo "<tbody>";
-                                    while($row = mysqli_fetch_array($result)){
-                                        echo "<tr>";
-                                        echo "<td>" . $row['idPagoLetra'] . "</td>";
-                                        echo "<td>" . $row['idPlanPago'] . "</td>";
-                                        echo "<td>" . $row['montoPagado'] . "</td>";
-                                        echo "<td>" . $row['fechaPago'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='#' title='Ver' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='#' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='#' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "</td>";
-                                    }
-                                    echo "</tbody>";
-                                echo "</table>";
-
-                                mysqli_free_result($result);;
-                            }else{
-                                echo "<p class='lead'><em>No hay regitros</em></p>";
-                            }
+                        if(isset($_POST['cuenta'])){//Validmaos el método post
+                            $filtro = $_POST['cuenta'];
+                            $monto = $_POST['monto'];
+                            $plazo = $_POST['plazo'];
                         }
-                        mysqli_close($con);
+                        if($monto>= 5000 && $monto<=100000){
+                            if($plazo ==1){
+                                $tasa = 1;
+                            }elseif($plazo ==2){
+                                $tasa = 1.5;
+                            }elseif($plazo ==3){
+                                $tasa = 2;
+                            }elseif($plazo ==4){
+                                $tasa = 2.5;
+                            }elseif($plazo ==5){
+                                $tasa = 3;
+                            }
+                        
+                            $sql1 = "UPDATE cuenta SET tasa = $tasa, plazo = $plazo, montoFijo =$monto 
+                            WHERE idCuenta = $filtro AND idtipoCuenta = 2";
+                            
+                            if (mysqli_query($con, $sql1)) {
+                                echo "Acción realizada correctamente";
+                            } else {
+                                echo "Error: " . $sql1 . "<br>" . mysqli_error($con);
+                            }
+                            //Aquí mostramos el historial de los depositos realizados 
+                            $sql = "SELECT c.idCuenta, rc.nombres, c.montoFijo, c.plazo, c.tasa
+                            FROM transaccioncuenta as tc INNER JOIN cuenta as c on tc.idCuenta = c.idCuenta
+                                                        INNER JOIN registrocliente rc on rc.idRegistroCliente = c.idRegistroCliente
+                            WHERE idtipoCuenta = 2 and c.idCuenta = '$filtro';";
+                            
+                            mysqli_close($con);
+                        }else{
+                            echo "Monto rechazado, el deposito de entrar en el rango de 5,000-100,000";
+                        }
                     ?>
-	    </div>
+            </form>
+        </div>
         <!--  -->
 
         <?php require_once('footer.php'); ?>

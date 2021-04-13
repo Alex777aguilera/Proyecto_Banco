@@ -33,17 +33,23 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-                    <form action="consultas.php" method="post">
+                    <!-- Metodo donde mandamos el filtro para la consulta-->
+                    <form action="consultas.php" method="post"> 
                     <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text">
                         <input type="submit" value="Buscar">
                     </form>
 	     	<?php
                     
                         require_once "conexion.php";
-                        $filtro = $_POST['filtro']; 
-                        $sql = "SELECT rc.identidad, rc.nombres, rc.apellidos, c.idtipoCuenta, c.montoNormal
+                        $filtro=0; //inicializada en cero para evitar errores de undefined
+                        if(isset($_POST['filtro'])){ //Validamos el método post
+                            $filtro = $_POST['filtro'];
+                            
+                        }
+                        //Query para visualizar los datos actuales de la cuenta
+                        $sql = "SELECT rc.identidad, rc.nombres, rc.apellidos, c.idtipoCuenta, c.montoNormal, c.tasa, c.plazo,c.montoFijo
                         FROM cuenta as c INNER JOIN registrocliente as rc on c.idRegistroCliente = rc.idRegistroCliente
-                        where c.idtipoCuenta = 1 and c.idCuenta = '$filtro'";
+                        where c.idCuenta = '$filtro'";
                         if($result = mysqli_query($con, $sql)){
                             if(mysqli_num_rows($result) > 0)
                             {
@@ -57,6 +63,8 @@
                                             echo "<th>Nombres</th>";
                                             echo "<th>Apellidos</th>";
                                             echo "<th>Tipo de Cuenta</th>";
+                                            echo "<th>Tasa</th>";
+                                            echo "<th>Plazo</th>";
                                             echo "<th>Saldo Actual</th>";
                                         echo "</tr>";
                                     echo "</thead>";
@@ -66,16 +74,24 @@
                                             echo "<td>" . $row['identidad'] . "</td>";
                                             echo "<td>" . $row['nombres'] . "</td>";
                                             echo "<td>" . $row['apellidos'] . "</td>";
+                                            //validamos el tipo de cuenta con el fin de tener esta consulta hecha para el plazo fijo
                                             $tipo=0;
                                             $descripcion = "";
                                             $tipo = $row['idtipoCuenta'];
                                                 if($tipo==1){
                                                     $descripcion = "Ahorros Retirables";
+                                                    echo "<td> $descripcion </td>";
+                                                    echo "<td>" . "N/A" . "</td>";
+                                                    echo "<td>" . "N/A" . "</td>";
+                                                    echo "<td>" . $row['montoNormal'] . "</td>";
                                                 }else if($tipo==2){
                                                     $descripcion = "Ahorros Plazo Fijo";
+                                                    echo "<td> $descripcion </td>";
+                                                    echo "<td>" . $row['tasa'] ."%". "</td>";
+                                                    echo "<td>" . $row['plazo'] ." años" ."</td>";
+                                                    echo "<td>" . $row['montoFijo'] . "</td>";
                                                 }
-                                            echo "<td> $descripcion </td>";    
-                                            echo "<td>" . $row['montoNormal'] . "</td>";
+                                                
                                         echo "</tr>";
                                     }
                                     echo "</tbody>";
