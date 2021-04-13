@@ -9,20 +9,19 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="principal.php">
                         <!-- Logo icon -->
-                        <b class="logo-icon ps-2">
+                        <b class="logo-icon ps-1">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                            <img src="../assets/images/LogoOB.png" style="width: 230px;" alt="homepage" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" />
-
+                           <!-- <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" />-->
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
@@ -238,7 +237,7 @@
                                             </span></a></li>     
                             </ul>
                         </li>
-                        <!--
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
                                     class="hide-menu">Empleados</span></a>
@@ -254,7 +253,26 @@
                                             </span></a></li>
                                 </ul>
                         </li>
-                        -->
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Transacciones </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="consultas.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Consultas 
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="depositos.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Depositos
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="retiros.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Retiros
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
+                                        </span></a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
