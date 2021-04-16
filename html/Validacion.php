@@ -8,7 +8,7 @@
     define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
-    define('DB_NAME', 'financiera1');
+    define('DB_NAME', 'banco');
 
     $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -16,6 +16,8 @@
         die("ERROR: No se pudo conectar a la base de datos " . mysqli_connect_error());
     }
 
+     $user = $_POST['usuario'];
+     $code = $_POST['contra'];
     $consulta = "SELECT CONCAT(emp.nombres,' ',emp.apellidos) as nombreCompleto, ca.idCargo as idCargo, ca.cargo as cargo
     FROM usuario as us INNER JOIN registroempleado as emp on us.idRegistroEmpleado = emp.idRegistroEmpleado
                         INNER JOIN cargo as ca on emp.idCargo = ca.idCargo
@@ -29,11 +31,14 @@
     $_SESSION['cargo'] = $fila[2];
    
     
-    if($valor > 0 && $fila[2] == 'Caja'){
+    if($valor > 0 && $fila[2] == 'admin'){
         header("location:principal.php");
-    }else{
-        echo $cargo;
-        echo "ERROR DE USUARIO y CONTRASEÑA";
+    }else if($valor > 0 && $fila[2] == 'cajero'){
+        header("location:cajero.php");
+    }else if($valor > 0 && $fila[2] == 'prestamista'){
+        header("location:principal.php");
+    }else if($valor > 0 && $fila[2] == 'normal'){
+        header("location:principal.php");
     }
 
 
