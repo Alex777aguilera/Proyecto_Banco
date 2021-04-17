@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Principal</title>
+	<title>Cargo</title>
 </head>
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
@@ -18,7 +18,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Transacciones</h4>
+                        <h4 class="page-title">Cargo</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -36,15 +36,15 @@
             <div class="row">
                 <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal"  action="in_transaccion.php" method="POST">
+                            <form class="form-horizontal"  action="in_cargo.php" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Tipo Transaccion</h4>
+                                    <h4 class="card-title">Cargo</h4>
                                     <div class="form-group row">
                                         <label for="fname"
                                             class="col-sm-3 text-end control-label col-form-label">Descripcion</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="txt_transaccion" id="txt_transaccion" 
-                                                placeholder="Descripcion de la Transaccion">
+                                            <input type="text" class="form-control" name="txt_cargo" id="txt_cargo" 
+                                                placeholder="Descripcion del Cargo">
                                             
                                         </div>
                                     </div>
@@ -53,45 +53,39 @@
 
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="submit" class="btn btn-primary" name="save1" value="save1">Guardar</button>
+                                        <button type="submit" class="btn btn-primary" name="save3" value="save3">Guardar</button>
                                     </div>
                                 </div>
                             </form>
                             
-
 
                             <?php
                               require_once "conexion.php";
 
 
                                    $sql = "SELECT *
-                                   FROM tipotransaccion ";
+                                   FROM cargo ";
                                    if($result = mysqli_query($con, $sql)){
                                       if(mysqli_num_rows($result) > 0) {
                                
                                           echo "<div class='row'>";
-                                          echo " <div class='col-md-10' style= margin-left:100px>";
+                                          echo "<div class='col-md-10' style= margin-left:100px>";
                                           echo "<div class='card'>";
                                           echo "<table class='table table-bordered table-striped'>";
                                           echo "<thead>";
                                           echo "<tr>";
                                           echo "<th>ID</th>";
-                                          echo "<th>Descripcion Tipo transaccion</th>";
-                                          echo "<th>Accion</th>";
+                                          echo "<th>Descripcion Cargo</th>";
                                           echo "</tr>";
                                           echo "</thead>";
                                           echo "<tbody>";
                                           while($row = mysqli_fetch_array($result)){
                                           echo "<tr>";
-                                          echo "<td>" . $row['idTipoTransaccion'] . "</td>";
-                                          echo "<td>" . $row['descripcion'] . "</td>";
+                                          echo "<td>" . $row['idCargo'] . "</td>";
+                                          echo "<td>" . $row['cargo'] . "</td>";
                                           echo "<td>";
-                                          echo "<a href='update_transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                          echo "<a href='delete_Transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                          
                                           echo "</td>";
-                             
-                                         
-                                        
                                           }
                                          echo "</tbody>";
                                          echo "</table>";
@@ -104,9 +98,15 @@
                                          }else{
                                          echo "<p class='lead'><em>No Existe</em></p>";
                                         }
-                                        }
+                                        }   
+                    //cerrar conexion
+                                         mysqli_close($con);
+                
+                        
                               
                             ?>
+
+
                         </div>     
                     </div>
             </div>   

@@ -15,7 +15,7 @@
                               
                 $_SESSION['message'] = 'Task Saved Successfully';
                 $_SESSION['message_type'] = 'success';
-                header('Location: catalogo.php');
+                header('Location: tipo_transaccion.php');
                               
             }
 

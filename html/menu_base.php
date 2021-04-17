@@ -191,27 +191,19 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="principal.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                        
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
                                     class="hide-menu">Opciones </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="formularios.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Formularios
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> login
-                                        </span></a></li>
-
+                                
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Catalogos
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta
 
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
@@ -234,7 +226,15 @@
                                             </span></a></li>
                                     <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar Empleado
-                                            </span></a></li>     
+                                            </span></a></li> 
+
+                                <li class="sidebar-item"><a href="genero.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Genero
+                                        </span></a></li>  
+
+                                <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
+                                        </span></a></li>    
                             </ul>
                         </li>
 
