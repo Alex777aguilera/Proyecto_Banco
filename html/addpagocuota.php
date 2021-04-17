@@ -2,30 +2,38 @@
 //---- Consulta Guardar ----
      require_once "conexion.php";
     if ($_POST == true) {
-        echo $_POST['planpago'],"<br>",$_POST['monto'],"<br>",$_POST['fecha'];
+        
         if (empty($_POST['planpago']) == false) {
             $p = $_POST['planpago'];
-            $m = $_POST['monto'];
-            $f = $_POST['fecha'];
+           
+            $fecha = "" . date("Y") . "-" . date("m") . "-" . date("d");
 
+            $sql="SELECT * FROM `plandepago` as pp 
+                INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo 
+                WHERE idPlanPago = '$p'";
 
-            $query_registro = "INSERT INTO pagoletra (`idPlanPago`, `montoPagado`, `fechaPago`) VALUES ('$p','$m','$f')"; 
+                $consulta = mysqli_query($con, $sql);
+                $row = mysqli_fetch_array($consulta);
+                $m = "". $row['letraMensual'] ."";
+
+            $query_registro = "INSERT INTO pagoletra (`idPlanPago`, `montoPagado`, `fechaPago`) VALUES ('$p','$m','$fecha')"; 
              
-             $respuesta = new stdClass();
+             // $respuesta = new stdClass();
 
              $result = mysqli_query($con, $query_registro);
-             if(!$result) {
+             // if(!$result) {
 
-                $respuesta->mensaje = "Se guardo correctamente";
+             //    $respuesta->mensaje = "Se guardo correctamente";
                 
-             }else{
-                $respuesta->mensaje = "Ocurrió un error";
-             }
-                echo json_encode($respuesta);
+             // }else{
+             //    $respuesta->mensaje = "Ocurrió un error";
+             // }
+             //    echo json_encode($respuesta);
 
-             $_SESSION['message'] = 'Task Saved Successfully';
-             $_SESSION['message_type'] = 'success';
-            echo "entro";
+             // $_SESSION['message'] = 'Task Saved Successfully';
+             // $_SESSION['message_type'] = 'success';
+            echo $result;
+            
         }else{
             echo "no entro";
         }     
