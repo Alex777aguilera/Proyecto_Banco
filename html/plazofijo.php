@@ -41,12 +41,14 @@
                     $monto = 0;
                     $plazo = 0;
                     $tasa = 0;
+                    $tipo = 0;
                         require_once "conexion.php";
                         if(isset($_POST['cuenta'])){//Validmaos el método post
                             $filtro = $_POST['cuenta'];
                             $monto = $_POST['monto'];
                             $plazo = $_POST['plazo'];
                         }
+                        
                         if($monto>= 5000 && $monto<=100000){
                             if($plazo ==1){
                                 $tasa = 1;
@@ -59,22 +61,47 @@
                             }elseif($plazo ==5){
                                 $tasa = 3;
                             }
-                        
-                            $sql1 = "UPDATE cuenta SET tasa = $tasa, plazo = $plazo, montoFijo =$monto 
-                            WHERE idCuenta = $filtro AND idtipoCuenta = 2";
+
+                            $sql = "SELECT c.idtipoCuenta
+                            FROM cuenta as c
+                            WHERE c.idcuenta = $filtro";
                             
-                            if (mysqli_query($con, $sql1)) {
-                                echo "Acción realizada correctamente";
-                            } else {
-                                echo "Error: " . $sql1 . "<br>" . mysqli_error($con);
+                            if($result1 = mysqli_query($con, $sql)){
+                                if(mysqli_num_rows($result1) > 0)
+                                {
+                                        //Aquí solo vamos a extraer el monto porque se necesita en el insert
+                                        while($row = mysqli_fetch_array($result1)){
+                                            $tipo = $row['idtipoCuenta'];
+                                        }
+                                        
+    
+                                    mysqli_free_result($result1);;
+                                }else{
+                                    
+                                }
                             }
-                            //Aquí mostramos el historial de los depositos realizados 
-                            $sql = "SELECT c.idCuenta, rc.nombres, c.montoFijo, c.plazo, c.tasa
-                            FROM transaccioncuenta as tc INNER JOIN cuenta as c on tc.idCuenta = c.idCuenta
-                                                        INNER JOIN registrocliente rc on rc.idRegistroCliente = c.idRegistroCliente
-                            WHERE idtipoCuenta = 2 and c.idCuenta = '$filtro';";
+                            if($tipo ==2)
+                            {
+
                             
-                            mysqli_close($con);
+                                $sql1 = "UPDATE cuenta SET tasa = $tasa, plazo = $plazo, montoFijo =$monto 
+                                WHERE idCuenta = $filtro AND idtipoCuenta = 2";
+                                
+                                if (mysqli_query($con, $sql1)) {
+                                    echo "Acción realizada correctamente";
+                                } else {
+                                    echo "Error: " . $sql1 . "<br>" . mysqli_error($con);
+                                }
+                                //Aquí mostramos el historial de los depositos realizados 
+                                $sql = "SELECT c.idCuenta, rc.nombres, c.montoFijo, c.plazo, c.tasa
+                                FROM transaccioncuenta as tc INNER JOIN cuenta as c on tc.idCuenta = c.idCuenta
+                                                            INNER JOIN registrocliente rc on rc.idRegistroCliente = c.idRegistroCliente
+                                WHERE idtipoCuenta = 2 and c.idCuenta = '$filtro';";
+                                
+                                mysqli_close($con);
+                            }else{
+                                echo "Esta cuenta no es de plazo fijo, favor ingresar una cuenta de plazo fijo";
+                            }    
                         }else{
                             echo "Monto rechazado, el deposito de entrar en el rango de 5,000-100,000";
                         }

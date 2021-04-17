@@ -35,7 +35,7 @@
 	    <div class="container-fluid">
                     <!-- Metodo donde mandamos el filtro para la consulta-->
                     <form action="consultas.php" method="post"> 
-                    <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text">
+                    <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text" require>
                         <input type="submit" value="Buscar">
                     </form>
 	     	<?php
@@ -90,6 +90,9 @@
                                                     echo "<td>" . $row['tasa'] ."%". "</td>";
                                                     echo "<td>" . $row['plazo'] ." años" ."</td>";
                                                     echo "<td>" . $row['montoFijo'] . "</td>";
+                                                    echo "<td>" . "<form action='proyeccion.php' method='post'> ";
+                                                    echo "<input class='btn btn-success text-white' type='submit' value='Proyección'> ";
+                                                    echo "</form>" . "</td>";
                                                 }
                                                 
                                         echo "</tr>";
