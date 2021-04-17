@@ -166,7 +166,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i
                                         class="ti-settings me-1 ms-1"></i> Configuracion</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.html"><i
+                                <a class="dropdown-item" href="cerrar_sesion.php"><i
                                         class="fa fa-power-off me-1 ms-1"></i> Cerrar Secion</a>
                                 <div class="dropdown-divider"></div>
                                 
