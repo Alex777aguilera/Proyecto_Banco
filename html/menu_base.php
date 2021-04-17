@@ -9,20 +9,19 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="principal.php">
                         <!-- Logo icon -->
-                        <b class="logo-icon ps-2">
+                        <b class="logo-icon ps-1">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                            <img src="../assets/images/LogoOB.png" style="width: 230px;" alt="homepage" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" />
-
+                           <!-- <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" />-->
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
@@ -192,27 +191,19 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="principal.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
+                        
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
                                     class="hide-menu">Opciones </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="formularios.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Formularios
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="index.html" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> login
-                                        </span></a></li>
-
+                                
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Catalogos
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta
 
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
@@ -226,9 +217,27 @@
                                 </span></a></li> 
                                 <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
                                         class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Lista de Cliente  
-                                </span></a></li>     
+                                </span></a></li>
+                                <li class="sidebar-item"><a href="empleados_ingresar.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Empleado
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar Empleado
+                                            </span></a></li> 
+
+                                <li class="sidebar-item"><a href="genero.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Genero
+                                        </span></a></li>  
+
+                                <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
+                                        </span></a></li>    
                             </ul>
                         </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
                                     class="hide-menu">Empleados</span></a>
@@ -239,11 +248,31 @@
                                     <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
                                             </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_modificar.php" class="sidebar-link"><i
+                                    <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar datos
                                             </span></a></li>
                                 </ul>
                         </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Transacciones </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="consultas.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Consultas 
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="depositos.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Depositos
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="retiros.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Retiros
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
+                                        </span></a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
