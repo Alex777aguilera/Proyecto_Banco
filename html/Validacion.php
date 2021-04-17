@@ -40,8 +40,14 @@
     }else if($valor > 0 && $fila[2] == 'normal'){
         header("location:principal.php");
     }
-
-
+  /*      
+    if($valor > 0){
+        header("location:redireccion.php");
+    }else{
+        echo $cargo;
+        echo "ERROR DE USUARIO y CONTRASEÑA";
+    }
+    */
 
 
 
