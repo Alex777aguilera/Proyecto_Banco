@@ -38,7 +38,9 @@ require_once "conexion.php";
                                             echo "<td>" . $row['tasa'] . "</td>";
                                             echo "<td>" . $row['ingresosTotales'] . "</td>";
                                             echo "<td>";
+                                            echo "<center>";
                                                  echo "<a href='pdfprestamo.php?idP=". $row['idPrestamo'] ."' target='_blank'title='PDF' data-toggle='tooltip'><span class='fas fa-file-pdf'></span></a>";
+                                            echo "</center>";
                                             echo "</td>";
                                         echo "</tr>";
                                     }

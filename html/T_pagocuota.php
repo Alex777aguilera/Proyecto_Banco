@@ -36,9 +36,8 @@
                             
                             echo "<td>";
 
-                                echo "<a href='updatepagocuota.php?id=". $row['idPagoLetra'] ."' title='Actualizar' data-toggle='tooltip'><span class=' fas fa-edit'></span></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
 
-                                echo "<a href='pdfpagocuota.php?id=". $row['idPagoLetra'] ."' title='PDF' data-toggle='tooltip'><span class='fas fa-file-pdf'></span></a>";
+                                echo "<a href='pdfpagocuota.php?id=". $row['idPagoLetra'] ."' title='PDF' data-toggle='tooltip' target='_blank'><span class='fas fa-file-pdf'></span></a>";
                             echo "</td>";
                         }
                         echo "</tbody>";
