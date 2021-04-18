@@ -1,5 +1,11 @@
 <?php
-session_start();
+    session_start();
+    if ($_SESSION['cargo'] != 'Gerente') {
+        header("location:redireccion.php");
+    }
+?>
+
+<?php
 require_once "conexion.php";
 //---------------------------------------------------------------------------------------------//
 //Preparar la consulta para la base de datos
@@ -75,7 +81,7 @@ $Monto_total = $consulta_monto->fetch_all(MYSQLI_ASSOC)[0];
 
 
 //Incluyo el archivo de enlaces separando las cabeceras del HTML de los Script de Javascrip 
-include 'enlaces_fn.php';
+include 'enlaces.php';
 
 
 
@@ -88,9 +94,6 @@ include 'enlaces_fn.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Principal</title>
-
-    <?= cabeceras() //Cabeceras de HTML, CSS y meta tags 
-    ?>
 </head>
 
 <body>
@@ -450,16 +453,40 @@ include 'enlaces_fn.php';
     </div>
 
 
-    <?= scripts() ?>
-
-
-
-
-
 </body>
 
 </html>
+<script>
+    $('#cerrar_sesion').click(function(){
+        $.confirm({
+            theme: 'material',
+            title: 'Notificación',
+            icon: 'fa fa-info',
+            content: '¿Desea cerrar sesión?',
+            columnClass: 'small',
+            typeAnimated: true,
+            cancelButtonClass: 'btn-primary',
+            draggable: true,
+            dragWindowBorder: false,
+            buttons: {
+                info: {
+                    text: "Si",
+                    btnClass: 'btn-primary',
+                    action: function () {
+                        window.location.href = "cerrar_sesion.php";
+                    }
+                },
+                danger: {
+                    text: "No",
+                    btnClass: 'btn-red',
+                    action: function () {
 
+                    }
+                },
+            }
+        })
+    });
+</script>
 
 
 

@@ -17,7 +17,7 @@
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template">
     <meta name="description" content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Login</title>
     <!-- Favicon icon -->
    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <!-- Custom CSS -->
@@ -55,7 +55,7 @@
             <div class="auth-box bg-dark border-top border-secondary">
                 <div id="loginform">
                     <div class="text-center pt-3 pb-3">
-                        <span class="db"><img src="../assets/images/logo.png" alt="logo" /></span>
+                        <span class="db"><img src="../assets/images/LogoOB.png" alt="logo" /></span>
                     </div>
                     <!-- Form -->
                     <form class="form-horizontal mt-3" id="loginform" action="Validacion.php" method="POST">
@@ -75,13 +75,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" name="usuario" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
+                                    <input type="text" class="form-control form-control-lg" name="usuario" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" required="">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
-                                    <input type="password" class="form-control form-control-lg" name="contra" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                                    <input type="password" class="form-control form-control-lg" name="contra" placeholder="Contraseña" aria-label="Password" aria-describedby="basic-addon1" required="">
                                 </div>
                             </div>
                         </div>
@@ -92,9 +92,9 @@
                                     <div class="form-group">
                                         
                                             <div class="pt-3">
-                                                    <button class="btn btn-success float-end text-white" type="submit">Login</button>
+                                                    <button class="btn btn-success float-end text-white" type="submit">Iniciar sesión</button>
                                             </div>
-
+                                        <br><br><br><br><br>
                                     </div>
                                 </div>
                             

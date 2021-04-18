@@ -85,6 +85,7 @@
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
+    <script src="../dist/js/Chart.min.js"></script>
     <script>
         $('#cerrar_sesion').click(function(){
             /*Swal.fire({

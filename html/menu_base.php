@@ -1,6 +1,4 @@
-<?php
-    session_start();
-?>
+
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -134,7 +132,6 @@
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <?php
                                     if ($_SESSION['cargo'] == 'Gerente' or $_SESSION['cargo'] == 'Escritorio') {
-                                        echo "<li class='sidebar-item'><a href='plan_pago.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Plan Pago </span></a></li>";
                                         echo "<li class='sidebar-item'><a href='prestamo.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Prestamo </span></a></li>";
                                     }
                                 ?>

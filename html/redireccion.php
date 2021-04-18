@@ -6,7 +6,7 @@
         header("location:depositos.php");
     }else if($_SESSION['cargo'] == 'Escritorio'){
         header("location:prestamo.php");
-    }else if(isset($_SESSION['cargo'])){
+    }else{
         header("location:index.php");
     }
 ?>
