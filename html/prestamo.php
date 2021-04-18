@@ -54,7 +54,7 @@
                                     <div class="col-md-5">
 
                                         <select class="select2 form-select shadow-none"
-                                            style="width: 100%; height:36px;" name="idCuenta" id="idCuenta" required="" onchange="numer(this.value);">
+                                            style="width: 100%; height:36px;" name="idCuenta" id="idCuenta" required="">
                                             <option value="">--- Seleccione ---</option>
                                             <optgroup label='Cuenta'>
                                             <?php 
