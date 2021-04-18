@@ -56,7 +56,7 @@
                                                 
 
 
-                                                $query = $db->prepare("SELECT * FROM cuenta as c    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE idTipoCuenta = '3'");
+                                                $query = $db->prepare("SELECT * FROM cuenta as c    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE idTipoCuenta = '1'");
                                                
                                                 $query->execute();
                                                 $data = $query->fetchAll();
@@ -297,11 +297,11 @@ function dato(plazo) {
     }else if(plazo == 3){
         Vtasa = 0.32;
     }else if(plazo == 4){
-        Vtasa = 0.56;
+        Vtasa = 0.48;
     }else if(plazo == 5){
-        Vtasa = 0.72;
+        Vtasa = 0.60;
     }else if(plazo == 6){
-        Vtasa = 0.96;
+        Vtasa = 0.72;
     }
 
     var coghtml = `

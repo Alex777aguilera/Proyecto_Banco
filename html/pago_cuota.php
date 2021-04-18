@@ -54,10 +54,10 @@
                                                 
 
 
-                                                $query = $db->prepare("SELECT * FROM `plandepago` as pp 
+                                                $query = $db->prepare("SELECT pp.monto, rc.nombres, rc.apellidos,pp.idPlanPago, pp.numeroCuota  FROM `plandepago` as pp 
                                                     INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo 
                                                     INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta 
-                                                    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE estadoLetra = '1' 
+                                                    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE estadoLetra = '0' 
                                                         ");
                                                
                                                 $query->execute();
@@ -67,10 +67,10 @@
                                                 echo "<optgroup label='Plan de Pago'>";
                                                  foreach ($data as $valores) {
                                                     $sl = ''.$valores[estadoLetra]. '';
-                                                    if ($sl == 1) {
+                                                    if ($sl == 0) {
                                                         $sl = "No Cancelado";
                                                     
-                                                     echo '<option value='.$valores[idPlanPago].'>'.$valores[idPlanPago].'-'.$valores[nombres].'-'.$valores[apellidos]. '-' .$valores[letraMensual]. '-' .$sl.'</option>';
+                                                     echo '<option value='.$valores[idPlanPago].'>'.$valores[idPlanPago].'-'.$valores[nombres].'-'.$valores[apellidos]. '-' .$valores[numeroCuota]. '-' .$valores[monto]. '-' .$sl.'</option>';
                                                     }
                                                      
                                                     }
@@ -139,7 +139,7 @@
 
 function dato(valor) {
     
-alert(valor);
+//alert(valor);
     
 }
 
