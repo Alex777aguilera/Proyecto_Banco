@@ -11,6 +11,7 @@
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
         <?php
 
+            if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 
                 require_once "conexion.php";
@@ -31,6 +32,8 @@
                         echo "<p class='lead'><em>No hay regitros</em></p>";
                     }
                 }
+            }
+               
                
             ?>
         <?php require_once('menu_base.php'); ?>	
@@ -97,7 +100,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 mt-3">Empelado</label>
                                     <div class="col-md-9" id="empleado">
-                                        <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="empelado">
+                                        <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="empleado">
                                             <option value=""><?php echo $empleado ?></option>
                                             <?php
                                             require_once "conexion.php";
@@ -107,7 +110,7 @@
                                                 while($lista=mysqli_fetch_assoc($resultado))
                                                 
                                                 echo "<option  value='".$lista["idRegistroEmpleado"]."'>".$lista["nombres"]."</option>"; 
-                                                mysqli_close($con);
+                                               
                                           ?>
                                         
                                         </select>
@@ -117,7 +120,7 @@
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-primary" name="btnactualizar" id="btnactualizar">Editar</button>
+                                    <button type="submit" class="btn btn-primary" name="btnactualizar" id="btnactualizar">Editar</button>
                                 </div>
                             </div>
                             </form>
@@ -129,7 +132,6 @@
        
 
 <?php
-   // $conet=mysqli_connect('localhost','root','','financiera1');
     if($_POST == true){
 
         $id = $_POST['id'];
@@ -137,10 +139,17 @@
         $contra = $_POST['contra'];
         $empleado = $_POST['empleado'];
 
-        try {
+        echo $_POST['id'];
+      try {
                 $sql = "UPDATE `usuario` SET `username`='$nombre',`password`='$contra',`idRegistroEmpleado`='$empleado' 
                 WHERE `idUsuario`='$id'";  
-                echo mysqli_query($con,$sql);
+                $e = mysqli_query($con,$sql);
+            if($e == 1) {
+                    echo "<script> 
+                    window.location='lista_usuario.php';
+                    </script>" ;
+
+                }
                 
         } catch (Exception $e) {
                 $e->getMessage();
