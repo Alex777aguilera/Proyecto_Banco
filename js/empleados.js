@@ -1,6 +1,6 @@
-$(document).ready(function(){
-  $('#txtIdentidad').mask('0000-0000-00000');
-});
+//$(document).ready(function(){
+//  $('#txtIdentidad').mask('0000-0000-00000');
+//});
 
 function revisarCampos()
 {

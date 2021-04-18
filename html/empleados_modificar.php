@@ -183,7 +183,9 @@
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="button" id="updateBtn" class="btn btn-outline-secondary" onclick="modActualizar()">Actualizar datos</button>
+                                        <!--
                                         <button type="button" id="deleteBtn" class="btn btn-outline-danger" onclick="modEliminar()">Borrar registro</button>
+                                        -->
                                     </div>
                                 </div>
                             </form>
