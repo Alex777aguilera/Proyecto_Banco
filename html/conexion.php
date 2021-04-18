@@ -8,7 +8,7 @@
     $con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
     $usuario = 'root';
     $password = '';
-   	$db = new PDO('mysql:host=localhost:3310;dbname=financiera1', $usuario, $password);
+   	$db = new PDO('mysql:host=localhost;dbname=financiera1', $usuario, $password);
     $connect = new mysqli("localhost", "root", "", "financiera1") or die('Error al conectar'. mysqli_error($connect));
 
     mysqli_set_charset($con,"utf8");   //Coloca el formato de carácteres como UTF-8.
