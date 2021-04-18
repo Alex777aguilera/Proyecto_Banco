@@ -41,70 +41,25 @@
                                     <h4 class="card-title">Cargo</h4>
                                     <div class="form-group row">
                                         <label for="fname"
-                                            class="col-sm-3 text-end control-label col-form-label">Descripcion</label>
-                                        <div class="col-sm-9">
+                                            class="col-sm-4 text-end control-label col-form-label">Descripcion</label>
+                                        <div class="col-sm-4">
                                             <input type="text" class="form-control" name="txt_cargo" id="txt_cargo" 
-                                                placeholder="Descripcion del Cargo">
+                                                placeholder="Descripcion del Cargo" required>
                                             
                                         </div>
+
+                                        <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary" name="save3" value="save3">Guardar</button>
+                                    </div>
                                     </div>
                                     
                                 </div>
 
                                 <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="submit" class="btn btn-primary" name="save3" value="save3">Guardar</button>
-                                    </div>
+                                    
                                 </div>
                             </form>
                             
-
-                            <?php
-                              require_once "conexion.php";
-
-
-                                   $sql = "SELECT *
-                                   FROM cargo ";
-                                   if($result = mysqli_query($con, $sql)){
-                                      if(mysqli_num_rows($result) > 0) {
-                               
-                                          echo "<div class='row'>";
-                                          echo "<div class='col-md-10' style= margin-left:100px>";
-                                          echo "<div class='card'>";
-                                          echo "<table class='table table-bordered table-striped'>";
-                                          echo "<thead>";
-                                          echo "<tr>";
-                                          echo "<th>ID</th>";
-                                          echo "<th>Descripcion Cargo</th>";
-                                          echo "</tr>";
-                                          echo "</thead>";
-                                          echo "<tbody>";
-                                          while($row = mysqli_fetch_array($result)){
-                                          echo "<tr>";
-                                          echo "<td>" . $row['idCargo'] . "</td>";
-                                          echo "<td>" . $row['cargo'] . "</td>";
-                                          echo "<td>";
-                                          
-                                          echo "</td>";
-                                          }
-                                         echo "</tbody>";
-                                         echo "</table>";
-                                         echo "</div>";
-                                         echo "</div>";
-                                         echo "</div>";
-
-
-                                          mysqli_free_result($result);;
-                                         }else{
-                                         echo "<p class='lead'><em>No Existe</em></p>";
-                                        }
-                                        }   
-                    //cerrar conexion
-                                         mysqli_close($con);
-                
-                        
-                              
-                            ?>
 
 
                         </div>     

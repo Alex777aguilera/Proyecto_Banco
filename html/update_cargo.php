@@ -1,18 +1,46 @@
+
+
+
 <!DOCTYPE html>
 <html dir="Banco_web" lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tipo de Transaccion</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!---<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>-->
+	<title>Actualizar Cargo</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 </head>
 <body>
+
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-	<?php require_once('menu_base.php'); ?>	
+
+<?php
+
+
+
+require_once "conexion.php";
+$id = $_GET['id'];
+$sql = "SELECT cargo FROM cargo WHERE idCargo = $id";
+if($result = mysqli_query($con,$sql)){
+    if(mysqli_num_rows($result) > 0)
+    {
+                        while($row = mysqli_fetch_array($result)){
+                        //$id = $row['idCargo'];
+                        $identidad  = $row['cargo'];
+                        
+                    }
+        mysqli_free_result($result);;
+    }else{
+        echo "<p class='lead'><em>No hay regitros</em></p>";
+    }
+}
+
+?>
+<?php require_once('menu_base.php'); ?>	
+
+	
 
 
     <div class="page-wrapper">
@@ -22,12 +50,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Transacciones</h4>
+                        <h4 class="page-title">Formularios</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Catalogos</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Formularios</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,41 +65,45 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
+	     	<div class="row">
+                    <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal"  action="in_transaccion.php" method="POST" id="ajax">
+                            <form class="form-horizontal"  action="update_cargo.php" method="POST" id="ajax" >
                                 <div class="card-body">
-                                    <h4 class="card-title">Tipo Transaccion</h4>
+                               
+                                    <h4 class="card-title">Actualizar Cargo</h4>
+                                    <input type="text"  visibility: hidden class="form-control" name="id" id="id" placeholder="ID"    required value="<?php echo $id ?>" >
                                     <div class="form-group row">
+                                    
+                                 
+                                  
                                         <label for="fname"
                                             class="col-sm-4 text-end control-label col-form-label">Descripcion</label>
                                         <div class="col-sm-4">
-                                            <input type="text" required class="form-control" name="txt_transaccion" id="txt_transaccion" 
-                                                placeholder="Descripcion de la Transaccion">
-                                            
+        
+                                            <input type="text" class="form-control" name="descripcion" id="descripcion" 
+                                                placeholder="Nombre del Cargo" >
+                                                
                                         </div>
 
                                         <div class="col-sm-4">
-                                        <button type="submit" style= margin-left:10px  class="btn btn-primary" name="save1" value="save1">Guardar</button>
-                                            
+                                        <button type="submit" name="update" value="update" id="btnactualizar" class="btn btn-primary" style= margin-left:10px >Update</button>
                                         </div>
+
                                     </div>
                                     
                                 </div>
-
-                                <div class="border-top">
-                                   
-                                </div>
+                            
                             </form>
                             
 
 
-                        
+                            
                         </div>     
                     </div>
-            </div>   
-        </div>
+            </div>  
+             
+	    </div>
         <!--  -->
 
         <?php require_once('footer.php'); ?>
@@ -126,3 +158,41 @@
 
     </script>
 
+<script>
+$('#zero_config').DataTable();
+
+function dato(valor) {
+    
+alert(valor);
+    
+}
+
+$(document).ready(function(){
+        $('#btnactualizar').click(function(){
+            var datos=$('#ajax').serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "actualizar_cargo.php",
+                data: datos,
+                success:function(r){
+                    if(r==1){
+                        alert("SE AGREGO EXITOSAMENTE");
+                        
+                        $('#descripcion').val('');
+                        $('#id').val('');
+                        
+                        window.location.href = "ver_cargo.php";
+
+                    }
+                    else{
+                        alert("LOS CAMPOS ESTAN VACIOS");
+                    }
+                }
+
+            });
+            return false;
+      });
+    });
+
+    </script>

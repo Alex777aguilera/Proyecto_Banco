@@ -126,7 +126,10 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="principal.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Principal</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cog"></i><span
@@ -136,9 +139,17 @@
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="fas fa-hand-holding-usd"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
+                                
+                                <li class="sidebar-item"><a href="ver_transaccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Transaccion
+                                        </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta</span></a></li>
+
+                                <li class="sidebar-item"><a href="ver_cuenta.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Cuenta</span></a></li>
+
 
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
@@ -169,10 +180,17 @@
 
                                 <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
+<<<<<<< HEAD
+                                        </span></a></li>    
+
+                                <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
+=======
                                         </span></a></li>  
                                         <li class="sidebar-item"><a href="prestamo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Prestamo
                                         </span></a></li>  
+>>>>>>> 9ba3ecba44e9c5659d24d42d3db25516b5d0c4df
                             </ul>
                         </li>
 
@@ -207,6 +225,9 @@
                                         </span></a></li>
                                  <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="proyeccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Proyección Plazo Fijo
                                         </span></a></li>
                             </ul>
                         </li>

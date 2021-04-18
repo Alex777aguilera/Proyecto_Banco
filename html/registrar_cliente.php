@@ -106,8 +106,8 @@
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
                                 <div class="form-group row">
-                                    <label class="col-md-3 mt-3">Genero</label>
-                                    <div class="col-md-9" id="genero">
+                                    <label class="col-md-2 mt-3">Genero</label>
+                                    <div class="col-md-3" id="genero">
                                         <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="genero">
                                             <option value="">--Seleccionar--</option>
                                             <?php
@@ -123,8 +123,22 @@
                                         
                                         </select>
                                     </div>
+                                        <div class="col-md-2">
+                                            <span>Monto Inicial</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input name="montoInicial" type="text" class="form-control"  required placeholder="Lps.1000"
+                                                    aria-label="Recipient 's username" aria-describedby="basic-addon2" id="montoInicial">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2">HN</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
-                               
+                                    
+                                    
+                                </div>
                             </div>
                             <div class="border-top">
                                 <div class="card-body">
@@ -132,6 +146,8 @@
                                 </div>
                             </div>
                             </form>
+	                        
+
                         </div>
                   </div>
              </div>
@@ -180,6 +196,7 @@
                         $('#nombre').val('');
                         $('#id').val('');
                         $('#genero').val('');
+                        $('#montoInicial').val('');
                     }
                     else{
                         alert("LOS CAMPOS ESTAN VACIOS");
