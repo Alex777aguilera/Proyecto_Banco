@@ -270,6 +270,9 @@
                                  <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
                                         </span></a></li>
+                                 <li class="sidebar-item"><a href="proyeccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Proyección Plazo Fijo
+                                        </span></a></li>
                             </ul>
                         </li>
 

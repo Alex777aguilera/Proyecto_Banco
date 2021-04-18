@@ -18,13 +18,11 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Consultas</h4>
+                        <h4 class="page-title">Proyección</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="principal.php">Principal</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Consultas</li>
-                                </ol>
+                               </ol>
                             </nav>
                         </div>
                     </div>
@@ -34,43 +32,126 @@
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
                     <!-- Metodo donde mandamos el filtro para la consulta-->
-                    <form action="consultas.php" method="post"> 
-                    <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text" require>
-                        <input type="submit" value="Buscar">
-                    </form>
-	     	<?php
-                    
-                        require_once "conexion.php";
-                        $filtro=0; //inicializada en cero para evitar errores de undefined
-                        $montoFijo=0;
-                        $tasa=0;
-                        $plazo=0;
-                        if(isset($_POST['filtro'])){ //Validamos el método post
-                            $filtro = $_POST['filtro'];
+                    <form action="proyeccion.php" method="post"> 
+                        <h5 class="page-title">No.Cuenta</h5><input id="cuenta" name="cuenta" type="text" require>
+                        <h5 class="page-title">Años de Proyección</h5><input id="tiempo" name="tiempo"  type="number" min=1 max=5 require>
+                        <input type="submit" value="Buscar"> 
+                            <?php
                             
-                        }
-                        //Query para visualizar los datos actuales de la cuenta
-                        $sql = "SELECT c.tasa, c.plazo,c.montoFijo
-                        FROM cuenta as c 
-                        where c.idCuenta = '$filtro'";
-                        if($result = mysqli_query($con, $sql)){
-                            if(mysqli_num_rows($result1) > 0)
-                            {
-                                    //Aquí solo vamos a extraer el monto porque se necesita en el insert
-                                    while($row = mysqli_fetch_array($result1)){
-                                        $montoFijo = $row['montoFijo'];
-                                        $tasa = $row['tasa'];
-                                        $tasa = $row['plazo'];
-                                    } 
+                                require_once "conexion.php";
+                                $cuenta=0; //inicializada en cero para evitar errores de undefined
+                                $tiempo=0;
+                                $interes=0;
+                                $plazo=0;
+                                $montoFijo=0;
+                                $sub=0;
+                                $total=0;
+                                if(isset($_POST['cuenta'])){ //Validamos el método post
+                                    $cuenta = $_POST['cuenta'];
+                                    $tiempo = $_POST['tiempo'];
                                     
-                                    //INCOMPLETO, NO TOCAR!!!!    
-                                mysqli_free_result($result1);;
-                            }else{
+                                }
                                 
-                            }
-                        }
-                        mysqli_close($con);
-                    ?>
+                                //Query para visualizar los datos actuales de la cuenta
+                                $sql = "SELECT  c.idtipoCuenta, c.tasa, c.plazo, c.montoFijo 
+                                FROM cuenta as c
+                                WHERE c.idCuenta =$cuenta AND c.idtipoCuenta =2";
+                                if($result = mysqli_query($con, $sql)){
+                                    if(mysqli_num_rows($result) > 0)
+                                    {
+                                        echo "<table class='table table-bordered table-striped'>";
+                                            echo "<thead>";
+                                                echo "<tr>";
+                                                    echo "<th>Monto Depositado</th>";
+                                                    echo "<th>Tasa</th>";
+                                                    echo "<th>Plazo Proyectado</th>";
+                                                    echo "<th>Monto Proyectado</th>";
+                                                echo "</tr>";
+                                            echo "</thead>";
+                                            echo "<tbody>";
+                                                //Aquí solo vamos a extraer el monto porque se necesita en el insert
+                                            while($row = mysqli_fetch_array($result)){
+                                                $montoFijo = $row['montoFijo'];
+                                                $tasa = $row['tasa'];
+                                                $plazo = $row['plazo'];
+                                            
+                                                if($tiempo<=$plazo){
+
+                                                    if($tiempo ==1){
+                                                        echo "<td> $montoFijo </td>";
+                                                        echo "<td> $tasa % </td>";
+                                                        echo "<td> $tiempo años</td>";
+                                                        $interes = $montoFijo*($tasa/100);
+                                                        $sub = $interes*12;
+                                                        $total= $montoFijo+$sub;
+                                                        echo "<td> $total </td>";
+
+                                                    }elseif($tiempo ==2){
+                                                        echo "<td> $montoFijo </td>";
+                                                        echo "<td> $tasa % </td>";
+                                                        echo "<td> $tiempo años</td>";
+                                                        $interes = $montoFijo*($tasa/100);
+                                                        $sub = $interes*24;
+                                                        $total= $montoFijo+$sub;
+                                                        echo "<td> $total </td>";
+
+                                                    }elseif($tiempo ==3){
+                                                        echo "<td> $montoFijo </td>";
+                                                        echo "<td> $tasa % </td>";
+                                                        echo "<td> $tiempo años</td>";
+                                                        $interes = $montoFijo*($tasa/100);
+                                                        $sub = $interes*36;
+                                                        $total= $montoFijo+$sub;
+                                                        echo "<td> $total </td>";
+
+                                                    }elseif($tiempo ==4){
+                                                        echo "<td> $montoFijo </td>";
+                                                        echo "<td> $tasa % </td>";
+                                                        echo "<td> $tiempo años</td>";
+                                                        $interes = $montoFijo*($tasa/100);
+                                                        $sub = $interes*48;
+                                                        $total= $montoFijo+$sub;
+                                                        echo "<td> $total </td>";
+
+                                                    }elseif($tiempo ==5){
+                                                        echo "<td> $montoFijo </td>";
+                                                        echo "<td> $tasa % </td>";
+                                                        echo "<td> $tiempo años</td>";
+                                                        $interes = $montoFijo*($tasa/100);
+                                                        $sub = $interes*60;
+                                                        $total= $montoFijo+$sub;
+                                                        echo "<td> $total </td>";
+
+                                                    }
+
+
+                                                }else{
+                                                    echo "El tiempo solicitado extiende el plazo original de deposito";
+                                                    echo "<td> N/A </td>";
+                                                    echo "<td> N/A </td>";
+                                                    echo "<td> N/A </td>";
+                                                    echo "<td> N/A </td>";
+                                                }
+
+
+
+
+                                                
+                                                echo "</tr>";
+                                            }
+                                                echo "</tbody>";
+                                        echo "</table>";
+                                            //INCOMPLETO, NO TOCAR!!!!    
+                                        mysqli_free_result($result);;
+                                    }else{
+                                       echo "La cuenta debe ser de Plazo Fijo"; 
+                                    }
+                                }
+                                mysqli_close($con);
+                            ?>
+
+            
+                    </form>
 	    </div>
         <!--  -->
 

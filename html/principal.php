@@ -57,9 +57,27 @@ $consulta_fechas = $con->query($sql_fechas);
 $fechas = $consulta_fechas->fetch_all(MYSQLI_ASSOC);
 //---------------------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------------------------------------//
+$sql_MontoN = "SELECT SUM(montoNormal) as TotalN FROM cuenta";
+$consulta_monto = $con->query($sql_MontoN);
+$Monto_normal = $consulta_monto->fetch_all(MYSQLI_ASSOC)[0];
+//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------//
+$sql_MontoF = "SELECT SUM(montoFijo) as TotalF FROM cuenta";
+$consulta_monto = $con->query($sql_MontoF);
+$Monto_fijo = $consulta_monto->fetch_all(MYSQLI_ASSOC)[0];
+//---------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------//
+$sql_MontoT = "SELECT (SUM(montoNormal)+SUM(montoFijo)) as TotalT FROM cuenta";
+$consulta_monto = $con->query($sql_MontoT);
+$Monto_total = $consulta_monto->fetch_all(MYSQLI_ASSOC)[0];
+//---------------------------------------------------------------------------------------------//
+
 
 //Incluyo el archivo de enlaces separando las cabeceras del HTML de los Script de Javascrip 
 include 'enlaces_fn.php';
+
+
 
 ?>
 
@@ -84,7 +102,51 @@ include 'enlaces_fn.php';
         <div class="page-wrapper" style="background-color: white;">
             <div style="margin-top:20px;" class="container container-fluid mt-4">
 
-                <h2>Principal</h2>
+                <h2>Dashboards</h2>
+
+
+                <!-- Datos de Saldo -->
+                <div class="row text-center mt-5 mb-5">
+                <div class="col-4 col-xl-3">
+                        <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix"  style="background-color: gainsboro;">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-wallet fa-3x text-body-bg-dark"></i>
+                                </div>
+                                <div class="font-size-h3 font-w600">L.<span style="font-size:2em" data-toggle="countTo" data-speed="1000" data-to=""><?= number_format($Monto_normal['TotalN'], 2, '.', ''); ?></span></div>
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Saldo Normal</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-4 col-xl-3">
+                        <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix"  style="background-color: gainsboro;">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-wallet fa-3x text-body-bg-dark"></i>
+                                </div>
+                                <div class="font-size-h3 font-w600">L.<span style="font-size:2em" data-toggle="countTo" data-speed="1000" data-to=""><?= number_format($Monto_fijo['TotalF'], 2, '.', ''); ?></span></div>
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Saldo Fijo</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4 col-xl-3">
+                        <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix"  style="background-color: gainsboro;">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-wallet fa-3x text-body-bg-dark"></i>
+                                </div>
+                                <div class="font-size-h3 font-w600">L.<span style="font-size:2em" data-toggle="countTo" data-speed="1000" data-to=""><?= number_format($Monto_total['TotalT'], 2, '.', ''); ?></span>
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Saldo Total</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                </div>
+
+
+
+
 
                 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -205,7 +267,6 @@ include 'enlaces_fn.php';
                         </script>
                     </div>
                 </div>
-
                 <hr style="background-color: indigo;">
 
                 <div class="row text-center">
@@ -318,56 +379,56 @@ include 'enlaces_fn.php';
 
                             var ctx = document.getElementById("grafico4");
                             var myLineChart = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: encabezados_f,
-                                            datasets: [{
-                                                    label: 'Depositos',
-                                                    lineTension: 0.5,
-                                                    borderColor: "rgba(78, 115, 223, 1)",
-                                                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                                                    data: depositos_f,
-                                                },
-                                                {
-                                                    label: "retiros",
-                                                    borderColor: "red",
-                                                    data: retiros_f
-                                                },
-                                                
-                                            ],
+                                type: 'line',
+                                data: {
+                                    labels: encabezados_f,
+                                    datasets: [{
+                                            label: 'Depositos',
+                                            lineTension: 0.5,
+                                            borderColor: "rgba(78, 115, 223, 1)",
+                                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                            data: depositos_f,
                                         },
-                                        options:{}
-                                    })
+                                        {
+                                            label: "retiros",
+                                            borderColor: "red",
+                                            data: retiros_f
+                                        },
 
-                                        //A continuacion utilizamos la libreria de Chat.js para generar nuestros graficos
+                                    ],
+                                },
+                                options: {}
+                            })
 
-                                        //toda la siguiente configuracion es para generar el grafico
-                                        /*var ctx = document.getElementById('grafico4').getContext('2d');
-                                        var chart = new Chart(ctx, {
-                                            // The type of chart we want to create
-                                            type: 'bar',
+                            //A continuacion utilizamos la libreria de Chat.js para generar nuestros graficos
 
-                                            // The data for our dataset
-                                            data: {
-                                                labels: encabezados_g, //variable de encabezados
-                                                datasets: [{
-                                                    label: 'Grafico de clientes por genero', //nombre del grafico
-                                                    backgroundColor: [ //arreglo que contiene los colores del grafico, si agregamos elementos agregamos colores
-                                                        'rgba(54, 162, 235, 0.9)',
-                                                        'rgb(255, 99, 132,0.9)',                                            
-                                                    ],
-                                                    borderColor: [ //colores de los borders del grafico
-                                                        'rgba(54, 162, 235, 0.9)',
-                                                        'rgb(255, 99, 132,0.9)',
-                                                        
-                                                    ],
-                                                    data: datos_g //variable que contiene los datos
-                                                }]
-                                            },
+                            //toda la siguiente configuracion es para generar el grafico
+                            /*var ctx = document.getElementById('grafico4').getContext('2d');
+                            var chart = new Chart(ctx, {
+                                // The type of chart we want to create
+                                type: 'bar',
 
-                                            // Configuration options go here
-                                            options: {}
-                                        });*/
+                                // The data for our dataset
+                                data: {
+                                    labels: encabezados_g, //variable de encabezados
+                                    datasets: [{
+                                        label: 'Grafico de clientes por genero', //nombre del grafico
+                                        backgroundColor: [ //arreglo que contiene los colores del grafico, si agregamos elementos agregamos colores
+                                            'rgba(54, 162, 235, 0.9)',
+                                            'rgb(255, 99, 132,0.9)',                                            
+                                        ],
+                                        borderColor: [ //colores de los borders del grafico
+                                            'rgba(54, 162, 235, 0.9)',
+                                            'rgb(255, 99, 132,0.9)',
+                                            
+                                        ],
+                                        data: datos_g //variable que contiene los datos
+                                    }]
+                                },
+
+                                // Configuration options go here
+                                options: {}
+                            });*/
                         </script>
                     </div>
                 </div>

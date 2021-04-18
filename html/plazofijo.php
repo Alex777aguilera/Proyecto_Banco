@@ -42,6 +42,7 @@
                     $plazo = 0;
                     $tasa = 0;
                     $tipo = 0;
+                    $edad = 0;
                         require_once "conexion.php";
                         if(isset($_POST['cuenta'])){//Validmaos el método post
                             $filtro = $_POST['cuenta'];
@@ -49,62 +50,71 @@
                             $plazo = $_POST['plazo'];
                         }
                         
-                        if($monto>= 5000 && $monto<=100000){
-                            if($plazo ==1){
-                                $tasa = 1;
-                            }elseif($plazo ==2){
-                                $tasa = 1.5;
-                            }elseif($plazo ==3){
-                                $tasa = 2;
-                            }elseif($plazo ==4){
-                                $tasa = 2.5;
-                            }elseif($plazo ==5){
-                                $tasa = 3;
-                            }
 
-                            $sql = "SELECT c.idtipoCuenta
-                            FROM cuenta as c
-                            WHERE c.idcuenta = $filtro";
-                            
-                            if($result1 = mysqli_query($con, $sql)){
-                                if(mysqli_num_rows($result1) > 0)
-                                {
-                                        //Aquí solo vamos a extraer el monto porque se necesita en el insert
-                                        while($row = mysqli_fetch_array($result1)){
-                                            $tipo = $row['idtipoCuenta'];
-                                        }
+                        
+                            if($monto>= 5000 && $monto<=100000){
+                                if($plazo ==1){
+                                    $tasa = 1;
+                                }elseif($plazo ==2){
+                                    $tasa = 1.5;
+                                }elseif($plazo ==3){
+                                    $tasa = 2;
+                                }elseif($plazo ==4){
+                                    $tasa = 2.5;
+                                }elseif($plazo ==5){
+                                    $tasa = 3;
+                                }
+
+                                $sql = "SELECT rc.edad, c.idtipoCuenta
+                                FROM cuenta as c INNER JOIN registrocliente as rc on c.idRegistroCliente = rc.idRegistroCliente
+                                where c.idCuenta = '$filtro'";
+                                
+                                if($result1 = mysqli_query($con, $sql)){
+                                    if(mysqli_num_rows($result1) > 0)
+                                    {
+                                            //Aquí solo vamos a extraer el monto porque se necesita en el insert
+                                            while($row = mysqli_fetch_array($result1)){
+                                                $tipo = $row['idtipoCuenta'];
+                                                $edad = $row['edad'];
+                                            }
+                                            
+        
+                                        mysqli_free_result($result1);;
+                                    }else{
                                         
-    
-                                    mysqli_free_result($result1);;
-                                }else{
-                                    
+                                    }
                                 }
-                            }
-                            if($tipo ==2)
+                            if($edad >=21)
                             {
+                                if($tipo ==2)
+                                {
 
-                            
-                                $sql1 = "UPDATE cuenta SET tasa = $tasa, plazo = $plazo, montoFijo =$monto 
-                                WHERE idCuenta = $filtro AND idtipoCuenta = 2";
                                 
-                                if (mysqli_query($con, $sql1)) {
-                                    echo "Acción realizada correctamente";
-                                } else {
-                                    echo "Error: " . $sql1 . "<br>" . mysqli_error($con);
+                                    $sql1 = "UPDATE cuenta SET tasa = $tasa, plazo = $plazo, montoFijo =$monto 
+                                    WHERE idCuenta = $filtro AND idtipoCuenta = 2";
+                                    
+                                    if (mysqli_query($con, $sql1)) {
+                                        echo "Acción realizada correctamente";
+                                    } else {
+                                        echo "Error: " . $sql1 . "<br>" . mysqli_error($con);
+                                    }
+                                    //Aquí mostramos el historial de los depositos realizados 
+                                    $sql = "SELECT c.idCuenta, rc.nombres, c.montoFijo, c.plazo, c.tasa
+                                    FROM transaccioncuenta as tc INNER JOIN cuenta as c on tc.idCuenta = c.idCuenta
+                                                                INNER JOIN registrocliente rc on rc.idRegistroCliente = c.idRegistroCliente
+                                    WHERE idtipoCuenta = 2 and c.idCuenta = '$filtro';";
+                                    
+                                    mysqli_close($con);
+                                }else{
+                                    echo "Esta cuenta no es de plazo fijo, favor ingresar una cuenta de plazo fijo";
                                 }
-                                //Aquí mostramos el historial de los depositos realizados 
-                                $sql = "SELECT c.idCuenta, rc.nombres, c.montoFijo, c.plazo, c.tasa
-                                FROM transaccioncuenta as tc INNER JOIN cuenta as c on tc.idCuenta = c.idCuenta
-                                                            INNER JOIN registrocliente rc on rc.idRegistroCliente = c.idRegistroCliente
-                                WHERE idtipoCuenta = 2 and c.idCuenta = '$filtro';";
-                                
-                                mysqli_close($con);
                             }else{
-                                echo "Esta cuenta no es de plazo fijo, favor ingresar una cuenta de plazo fijo";
+                                echo "Lo sentimos, no cumple la edad mínima para esta transacción";
                             }    
                         }else{
-                            echo "Monto rechazado, el deposito de entrar en el rango de 5,000-100,000";
+                                echo "Monto rechazado, el deposito de entrar en el rango de 5,000-100,000";
                         }
+                        
                     ?>
             </form>
         </div>
