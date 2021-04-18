@@ -4,7 +4,7 @@ include("conexion.php");
 
 if(isset($_GET['id'])) {
   $id = $_GET['id'];
-  $query = "DELETE FROM tipotransaccion WHERE idTipoTransaccion = $id";
+  $query = "DELETE FROM cargo WHERE idCargo = $id";
   $result = mysqli_query($con, $query);
   if(!$result) {
     die("Query Failed.");
@@ -12,8 +12,7 @@ if(isset($_GET['id'])) {
 
   $_SESSION['message'] = 'Task Removed Successfully';
   $_SESSION['message_type'] = 'danger';
-  header('Location: ver_transaccion.php');
+  header('Location: ver_cargo.php');
 }
 
 ?>
-

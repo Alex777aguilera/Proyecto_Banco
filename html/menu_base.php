@@ -130,9 +130,17 @@
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
+                                
+                                <li class="sidebar-item"><a href="ver_transaccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Transaccion
+                                        </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta</span></a></li>
+
+                                <li class="sidebar-item"><a href="ver_cuenta.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Cuenta</span></a></li>
+
 
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
@@ -163,10 +171,17 @@
 
                                 <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
+<<<<<<< HEAD
+                                        </span></a></li>    
+
+                                <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
+=======
                                         </span></a></li>  
                                         <li class="sidebar-item"><a href="prestamo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Prestamo
                                         </span></a></li>  
+>>>>>>> 9ba3ecba44e9c5659d24d42d3db25516b5d0c4df
                             </ul>
                         </li>
 

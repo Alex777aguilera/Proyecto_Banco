@@ -22,6 +22,10 @@
    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"  />
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -57,7 +61,17 @@
                     <form class="form-horizontal mt-3" id="loginform" action="Validacion.php" method="POST">
                         <div class="row pb-4">
                             <div class="col-12">
+                                <?php
+                                    if (isset($_SESSION['usuario_valido'])) {
+                                        //echo "<script>toastr.error('Error! Usuario o contraseña inválidos')</script>";
+                                        echo "<div class='alert alert-danger' role='alert'>";
+                                        echo     "<strong>¡Error! Usuario o contraseña inválidos</strong>";
+                                        echo "</div>";
+                                        session_destroy();
+                                    }
+                                ?>
                                 <div class="input-group mb-3">
+
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>

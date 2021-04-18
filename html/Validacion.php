@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $user = $_POST['usuario'];
         $code = $_POST['contra'];
@@ -27,7 +26,7 @@
         $valor=mysqli_num_rows($res);
         
 
-        if($valor > 0 && $fila[2] == 'admin'){
+      /*  if($valor > 0 && $fila[2] == 'admin'){
             $_SESSION['nombreCompleto'] = $fila[0];
             $_SESSION['cargo'] = $fila[2];
             header("location:principal.php");
@@ -37,15 +36,18 @@
             header("location:principal.php");
         }else if($valor > 0 && $fila[2] == 'normal'){
             header("location:principal.php");
-        }
-    /*      
+        }*/
+
         if($valor > 0){
+            $_SESSION['nombreCompleto'] = $fila[0];
+            $_SESSION['cargo'] = $fila[2];
             header("location:redireccion.php");
         }else{
-            echo $cargo;
-            echo "ERROR DE USUARIO y CONTRASEÑA";
+            $_SESSION['usuario_valido'] = false; 
+            header("location:index.php");
         }
-        */
+    
+ 
 
 }
 
