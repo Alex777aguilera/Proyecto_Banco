@@ -153,21 +153,7 @@
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
 
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="registrar_cliente.php" class="sidebar-link"><i
-                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Cliente
-                                </span></a></li> 
-                                <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
-                                        class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Lista de Cliente  
-                                </span></a></li>
-                                <li class="sidebar-item"><a href="empleados_ingresar.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Empleado
-                                            </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
-                                            </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar Empleado
-                                            </span></a></li> 
+                                
 
                                 <li class="sidebar-item"><a href="genero.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Genero
@@ -189,6 +175,7 @@
                             </ul>
                         </li>
 
+                        
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span
                                     class="hide-menu">Empleados</span></a>
@@ -199,11 +186,32 @@
                                     <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
                                                 class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
                                             </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_modificar_consulta.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Actualizar datos
-                                            </span></a></li>
+                                  
                                 </ul>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span
+                                    class="hide-menu">Cliente</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="registrar_cliente.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Cliente
+                                            </span></a></li>
+                                    <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Cliente
+                                            </span></a></li>
+                                    
+                                </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span
+                                    class="hide-menu">Usuario</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="lista_usuario.php" class="sidebar-link"><i
+                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Ver Usuario
+                                            </span></a></li>
+                                  
+                                  
+                                </ul>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-retweet"></i><span
