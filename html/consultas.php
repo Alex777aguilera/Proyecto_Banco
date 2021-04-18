@@ -22,8 +22,6 @@
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="principal.php">Principal</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Consultas</li>
                                 </ol>
                             </nav>
                         </div>
@@ -35,17 +33,19 @@
 	    <div class="container-fluid">
                     <!-- Metodo donde mandamos el filtro para la consulta-->
                     <form action="consultas.php" method="post"> 
-                    <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text">
+                    <h5 class="page-title">No.Cuenta</h5><input id="filtro" name="filtro" type="text" require>
                         <input type="submit" value="Buscar">
                     </form>
 	     	<?php
                     
                         require_once "conexion.php";
-                        $filtro=0; //inicializada en cero para evitar errores de undefined
+                        $filtro=0;
+                         //inicializada en cero para evitar errores de undefined
                         if(isset($_POST['filtro'])){ //Validamos el método post
                             $filtro = $_POST['filtro'];
                             
                         }
+                        
                         //Query para visualizar los datos actuales de la cuenta
                         $sql = "SELECT rc.identidad, rc.nombres, rc.apellidos, c.idtipoCuenta, c.montoNormal, c.tasa, c.plazo,c.montoFijo
                         FROM cuenta as c INNER JOIN registrocliente as rc on c.idRegistroCliente = rc.idRegistroCliente
@@ -71,6 +71,7 @@
                                     echo "<tbody>";
                                     while($row = mysqli_fetch_array($result)){
                                         echo "<tr>";
+                                        
                                             echo "<td>" . $row['identidad'] . "</td>";
                                             echo "<td>" . $row['nombres'] . "</td>";
                                             echo "<td>" . $row['apellidos'] . "</td>";
@@ -78,6 +79,7 @@
                                             $tipo=0;
                                             $descripcion = "";
                                             $tipo = $row['idtipoCuenta'];
+                                            
                                                 if($tipo==1){
                                                     $descripcion = "Ahorros Retirables";
                                                     echo "<td> $descripcion </td>";
@@ -90,6 +92,12 @@
                                                     echo "<td>" . $row['tasa'] ."%". "</td>";
                                                     echo "<td>" . $row['plazo'] ." años" ."</td>";
                                                     echo "<td>" . $row['montoFijo'] . "</td>";
+                                                    echo "<td>" . "<form action='proyeccion.php' method='post'> ";
+                                                    echo "<?php $filtro1 ?>";
+                                                    echo "<input class='btn btn-success text-white' type='submit' value= 'Proyección' > ";
+                                                    echo "</form>" . "</td>";
+
+                                                    
                                                 }
                                                 
                                         echo "</tr>";

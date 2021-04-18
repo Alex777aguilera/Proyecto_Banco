@@ -14,7 +14,7 @@
                         <b class="logo-icon ps-1">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/LogoOB.png" style="width: 230px;" alt="homepage" class="light-logo" />
+                            <img src="../assets/images/LogoOB.png" style="width: 230px; height: 65px;" alt="homepage" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
@@ -56,13 +56,7 @@
                         
                         <!-- Search -->
                         <!-- =============================BUSCADOR================================= -->
-                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
-                                href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
-                                    class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li>
+                        
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -71,79 +65,13 @@
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ================NOTIFICACIONES============================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-bell font-24"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- 
                         <!-- Messages -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                 <i class="font-24 mdi mdi-comment-processing"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end mailbox animated bounceInDown" aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i
-                                                            class="ti-calendar"></i></span>
-                                                    <div class="ms-2">
-                                                        <h5 class="mb-0">Event today</h5>
-                                                        <span class="mail-desc">Just a reminder that event</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i
-                                                            class="ti-settings"></i></span>
-                                                    <div class="ms-2">
-                                                        <h5 class="mb-0">Settings</h5>
-                                                        <span class="mail-desc">You can customize this template</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i
-                                                            class="ti-user"></i></span>
-                                                    <div class="ms-2">
-                                                        <h5 class="mb-0">Pavan kumar</h5>
-                                                        <span class="mail-desc">Just see the my admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-danger btn-circle"><i
-                                                            class="fa fa-link"></i></span>
-                                                    <div class="ms-2">
-                                                        <h5 class="mb-0">Luanch Admin</h5>
-                                                        <span class="mail-desc">Just see the my new admin!</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </ul>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- End Messages -->
                         <!-- ============================================================== -->
@@ -158,15 +86,13 @@
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
                                     Perfil</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet me-1 ms-1"></i>
-                                    Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
-                                    Inbox</a>
+                                
+                               
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i
                                         class="ti-settings me-1 ms-1"></i> Configuracion</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.html"><i
+                                <a class="dropdown-item" id="cerrar_sesion" href="javascript:void(0)"><i
                                         class="fa fa-power-off me-1 ms-1"></i> Cerrar Secion</a>
                                 <div class="dropdown-divider"></div>
                                 
@@ -191,7 +117,10 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="principal.php" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Principal</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
@@ -242,10 +171,17 @@
 
                                 <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
+<<<<<<< HEAD
                                         </span></a></li>    
 
                                 <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
+=======
+                                        </span></a></li>  
+                                        <li class="sidebar-item"><a href="prestamo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Prestamo
+                                        </span></a></li>  
+>>>>>>> 9ba3ecba44e9c5659d24d42d3db25516b5d0c4df
                             </ul>
                         </li>
 
@@ -280,6 +216,9 @@
                                         </span></a></li>
                                  <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
+                                        </span></a></li>
+                                 <li class="sidebar-item"><a href="proyeccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Proyección Plazo Fijo
                                         </span></a></li>
                             </ul>
                         </li>

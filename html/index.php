@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    //Si existe la variable y es distinta de null entra
+    if (isset($_SESSION['nombreCompleto'])) { 
+        header("location:principal.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 
