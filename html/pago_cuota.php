@@ -6,6 +6,7 @@
 	<title>Pago Cuota</title>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 	<?php require_once('menu_base.php'); ?>	
@@ -31,9 +32,6 @@
                 </div>
             </div>
 
-            
-          
-
         <!-- Parte en donde se trabajara -->
         <div class="container-fluid">
             <div class="row">
@@ -44,30 +42,36 @@
                                     <h4 class="card-title"></h4>
                                     <div class="row mb-3">
 
-                                    <label class="col-md-2 mt-2" >Seleccione su plan de Pago: </label>
-                                    <div class="col-md-3">
+                                    <label class="col-md-3 mt-2" >Seleccione su plan de Pago: </label>
+                                    <div class="col-md-5">
 
                                         <select class="select2 form-select shadow-none"
-                                            style="width: 100%; height:36px;" name="planpago">
+                                            style="width: 100%; height:36px;" name="planpago" id="planpago">
+                                            <option value="0">--- Seleccione ---</option>
 
                                             <?php 
                                                 require_once "conexion.php";
                                                 
 
 
-                                                $query = $db->prepare("SELECT * FROM plandepago /*as pp 
-                                                INNER JOIN prestamos as p ON pp.idPlanPago = p.idCuenta
-                                                INNER JOIN cuenta as c ON p.idCuenta = c.idCuenta
-                                                INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente*/");
+                                                $query = $db->prepare("SELECT * FROM `plandepago` as pp 
+                                                    INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo 
+                                                    INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta 
+                                                    INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE estadoLetra = '1' 
+                                                        ");
                                                
                                                 $query->execute();
                                                 $data = $query->fetchAll();
 
-                                                echo "<option>--- Seleccione ---</option>";
+                                                
                                                 echo "<optgroup label='Plan de Pago'>";
                                                  foreach ($data as $valores) {
-                                                     
-                                                     echo '<option value='.$valores[idPlanPago].'>'.$valores[idPlanPago].'-'.$valores[nombres].'-'.$valores[numeroCuenta]. '</option>';
+                                                    $sl = ''.$valores[estadoLetra]. '';
+                                                    if ($sl == 1) {
+                                                        $sl = "Ativo";
+                                                    
+                                                     echo '<option value='.$valores[idPlanPago].'>'.$valores[idPlanPago].'-'.$valores[nombres].'-'.$valores[apellidos]. '-' .$valores[letraMensual]. '-' .$sl.'</option>';
+                                                    }
                                                      
                                                     }
                                                     echo "</optgroup>";
@@ -77,23 +81,18 @@
 
                                     </div>
                                     
-                                    <label for="lname"
-                                            class="col-sm-1 control-label col-form-label">Monto a Pagar: </label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" id="monto"
-                                                placeholder="monto" name="monto">
-                                        </div>
-
                                 </div>
                                     
                                     <div class="row-lg-10">
                                         
                                         <div class="col-lg-3">
                                             <label for="lname"
-                                            class="col-sm-8 control-label col-form-label" >Fecha de la Cuota</label>
+                                            class="col-sm-8 control-label col-form-label" ><?php 
+                                            $fecha = "" . date("Y") . "-" . date("m") . "-" . date("d"); 
+                                            // echo $fecha; ?></label>
                                             
                                         </div>
-                                        <div class="col-lg-3">
+                                        <!-- <div class="col-lg-3">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="datepicker-autoclose"
                                                     placeholder="mm/dd/yyyy" name="fecha">
@@ -102,7 +101,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+
+
                                     
                                 </div>
                                 <div class="border-top">
@@ -114,55 +115,9 @@
                         </div>
                 </div>
             </div>
-	     	<?php
-                // WHERE n.nacionalidad = '$busqueda'
-                $sql = "SELECT * FROM pagoletra";
-                if($result = mysqli_query($con, $sql)){
-                    if(mysqli_num_rows($result) > 0)
-                    {
-                    echo "<div class='card'>";
-                        echo "<div class='card-body'>";
-                            echo "<h5 class='card-title'>Basic Datatable</h5>";
-                                echo "<div class='table-responsive'>";
-                                    echo "<table id='zero_config' class='table table-striped table-bordered'>";
-                                        echo "<thead>";
-                                            echo "<tr>";
-                                                echo "<th>ID</th>";
-                                                echo "<th>Plan de Pago</th>";
-                                                echo "<th>Monto Pagado</th>";
-                                                echo "<th>Fecha de pago</th>";
-                                                echo "<th>acciones</th>";
-                                            echo "</tr>";
-                                        echo "</thead>";
-                                        echo "<tbody>";
-                                        while($row = mysqli_fetch_array($result)){
-                                        echo "<tr>";
-                                        echo "<td>" . $row['idPagoLetra'] . "</td>";
-                                        echo "<td>" . $row['idPlanPago'] . "</td>";
-                                        echo "<td>" . $row['montoPagado'] . "</td>";
-                                        echo "<td>" . $row['fechaPago'] . "</td>";
-                                        
-                                        echo "<td>";
-
-                                            echo "<a href='updatepagocuota.php?id=". $row['idPagoLetra'] ."' title='Actualizar' data-toggle='tooltip'><span class=' fas fa-edit'></span></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
-
-                                            echo "<a href='#' title='Eliminar' data-toggle='tooltip'><span class='fas fa-trash-alt'></span></a>";
-                                        echo "</td>";
-                                    }
-                                    echo "</tbody>";
-                                echo "</table>";
-
-                            echo "</div>";
-                        echo "</div>";
-                    echo "</div>";
-
-                        mysqli_free_result($result);;
-                    }else{
-                        echo "<p class='lead'><em>No hay regitros</em></p>";
-                    }
-                }
-                mysqli_close($con);
-            ?>
+	     	<div id="Tabla">
+                     
+            </div>
 	    </div>
         <!--  -->
 
@@ -180,7 +135,7 @@
 
 
 
-$('#zero_config').DataTable();
+
 
 function dato(valor) {
     
@@ -253,31 +208,53 @@ function soloNumeros(e)
             
         });
 
-    </script>
+    $(buscar());
 
-    <script >
+//-- actualizar tabla --
+function buscar(query)
+{
+    $.ajax(
+        {
+            url: 'T_pagocuota.php',
+            type: 'POST',
+            dataType: 'html',
+            data: {query, query},
+        })
+        .done(function(resp)
+        {
+            $("#Tabla").html(resp);
+        })
+        .fail(function()
+        {
+            console.log("Error");
+        })
+}
+
+$(document).on('klick', '#enviar', function()
+{ 
+    
+
+})
+
         
         $(document).ready(function(){
           $("#enviar").click(function(){
-            var formulario = $("#formulario").serializeArray();
+            var formulario = $("#formulario").serialize();
             $.ajax({
               type: "POST",
-              dataType: 'json',
               url: "addpagocuota.php",
               data: formulario,
 
               success:function(r){
+                alert (r);
                     if(r==1){
                         alert("SE AGREGO EXITOSAMENTE");
+                        $(buscar());
+                        $('#planpago').val('0');
+                        $('#monto').val('');
                         
-                        /*$('#ingresos').val('');
-                        $('#ocupacion').val('');
-                        $('#direccion').val('');
-                        $('#edad').val('');
-                        $('#apellido').val('');
-                        $('#nombre').val('');
-                        $('#id').val('');
-                        $('#genero').val('');*/
+
+
                     }
                     else{
                         alert("LOS CAMPOS ESTAN VACIOS");

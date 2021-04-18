@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css"
         href="../assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/libs/quill/dist/quill.snow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css"/>
     <!--  -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,3 +84,48 @@
     <script src="../assets/extra-libs/DataTables/datatables.min.js"></script>
     <script src="../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
     <script src="../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
+    <script>
+        $('#cerrar_sesion').click(function(){
+            /*Swal.fire({
+                title: '¿Desea cerrar sesión?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "cerrar_sesion.php";
+                }
+                })*/
+            $.confirm({
+                theme: 'material',
+                title: 'Notificación',
+                icon: 'fa fa-info',
+                content: '¿Desea cerrar sesión?',
+                columnClass: 'small',
+                typeAnimated: true,
+                cancelButtonClass: 'btn-primary',
+                draggable: true,
+                dragWindowBorder: false,
+                buttons: {
+                    info: {
+                        text: "Si",
+                        btnClass: 'btn-primary',
+                        action: function () {
+                            window.location.href = "cerrar_sesion.php";
+                        }
+                    },
+                    danger: {
+                        text: "No",
+                        btnClass: 'btn-red',
+                        action: function () {
+
+                        }
+                    },
+                }
+            })
+        });
+    </script>

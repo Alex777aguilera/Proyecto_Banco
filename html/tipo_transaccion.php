@@ -18,7 +18,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Catalogos</h4>
+                        <h4 class="page-title">Transacciones</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -33,60 +33,84 @@
 
 	    <!-- Parte en donde se trabajara -->
 	    <div class="container-fluid">
-	     	<div class="row">
-                    <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal"  action="in_transaccion.php" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Tipo de Transaccion</h4>
+                                    <h4 class="card-title">Tipo Transaccion</h4>
                                     <div class="form-group row">
                                         <label for="fname"
-                                            class="col-sm-3 text-end control-label col-form-label">Descripcion Transaccion</label>
+                                            class="col-sm-3 text-end control-label col-form-label">Descripcion</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txt_transaccion"
-                                                placeholder="Tipo Transaccion">
+                                            <input type="text" class="form-control" name="txt_transaccion" id="txt_transaccion" 
+                                                placeholder="Descripcion de la Transaccion">
+                                            
                                         </div>
                                     </div>
-                                   
+                                    
+                                </div>
+
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" name="save1" value="save1">Guardar</button>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-             
+                            
 
-          
-                    <div class="col-md-6">
-                        <div class="card">
-                            <form class="form-horizontal">
-                                <div class="card-body">
-                                    <h4 class="card-title">Tipo de Transaccion</h4>
-                                    <div class="form-group row">
-                                        <label for="fname"
-                                            class="col-sm-3 text-end control-label col-form-label">Descripcion Transaccion</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txt_transaccion"
-                                                placeholder="Tipo Transaccion">
-                                        </div>
-                                    </div>
-                                   
-                                <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                 
-                <!-- editor -->
-                
-            </div>
 
-	    </div>
+                            <?php
+                              require_once "conexion.php";
+
+
+                                   $sql = "SELECT *
+                                   FROM tipotransaccion ";
+                                   if($result = mysqli_query($con, $sql)){
+                                      if(mysqli_num_rows($result) > 0) {
+                               
+                                          echo "<div class='row'>";
+                                          echo " <div class='col-md-10' style= margin-left:100px>";
+                                          echo "<div class='card'>";
+                                          echo "<table class='table table-bordered table-striped'>";
+                                          echo "<thead>";
+                                          echo "<tr>";
+                                          echo "<th>ID</th>";
+                                          echo "<th>Descripcion Tipo transaccion</th>";
+                                          echo "<th>Accion</th>";
+                                          echo "</tr>";
+                                          echo "</thead>";
+                                          echo "<tbody>";
+                                          while($row = mysqli_fetch_array($result)){
+                                          echo "<tr>";
+                                          echo "<td>" . $row['idTipoTransaccion'] . "</td>";
+                                          echo "<td>" . $row['descripcion'] . "</td>";
+                                          echo "<td>";
+                                          echo "<a href='update_transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                          echo "<a href='delete_Transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                          echo "</td>";
+                             
+                                         
+                                        
+                                          }
+                                         echo "</tbody>";
+                                         echo "</table>";
+                                         echo "</div>";
+                                         echo "</div>";
+                                         echo "</div>";
+
+
+                                          mysqli_free_result($result);;
+                                         }else{
+                                         echo "<p class='lead'><em>No Existe</em></p>";
+                                        }
+                                        }
+                              
+                            ?>
+                        </div>     
+                    </div>
+            </div>   
+        </div>
         <!--  -->
 
         <?php require_once('footer.php'); ?>

@@ -46,6 +46,8 @@
                                     <div class="col-md-4">
                                         <select class="select2 form-select shadow-none" name="prestamo" id="prestamo" onchange="dato(this.value);" 
                                             style="width: 100%; height:36px;">
+                                            <option>--- Seleccione ---</option>
+                                                <optgroup label='Prestamos'>
                                             <?php 
                                                 require_once "conexion.php";
                                                 
@@ -58,12 +60,12 @@
                                                 $data = $query->fetchAll();
 
                                                  foreach ($data as $valores) {
-                                                     echo "<option>--- Seleccione ---</option>";
-                                                     echo "<optgroup label='Prestamos'>";
+                                                     
                                                      echo '<option value='.$valores[idPrestamo].'>'.$valores[idPrestamo].'-'.$valores[nombres].'-'.$valores[numeroCuenta]. '</option>';
-                                                     echo "</optgroup>";
+                                                     
                                                     }
                                             ?>  
+                                        </optgroup>
                                         </select>
                                     </div>
                                     <label for="lname" class="col-md-2 control-label col-form-label">Monto</label>
