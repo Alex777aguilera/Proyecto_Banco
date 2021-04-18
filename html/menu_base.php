@@ -130,79 +130,49 @@
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cog"></i><span
                                     class="hide-menu">Opciones </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                
-                                <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
-                                            class="fas fa-hand-holding-usd"></i><span class="hide-menu"> Tipo Transaccion
-                                        </span></a></li>
-                                
-                                <li class="sidebar-item"><a href="ver_transaccion.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Transaccion
-                                        </span></a></li>
-
-                                <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta</span></a></li>
-
-                                <li class="sidebar-item"><a href="ver_cuenta.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Cuenta</span></a></li>
-
-
-                                 <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
-                                        </span></a></li>
-                                 <li class="sidebar-item"><a href="pago_cuota.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Pago Cuota
-
-                                        </span></a></li>
-                                
-
-                                <li class="sidebar-item"><a href="genero.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar Genero
-                                        </span></a></li>  
-
-                                <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
-
-                                        </span></a></li>    
-
-                                <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
-
-                                        </span></a></li>  
-                                        <li class="sidebar-item"><a href="prestamo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Prestamo
-                                        </span></a></li>  
-
+                                <?php
+                                    if ($_SESSION['cargo'] == 'Gerente' or $_SESSION['cargo'] == 'Escritorio') {
+                                        echo "<li class='sidebar-item'><a href='plan_pago.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Plan Pago </span></a></li>";
+                                        echo "<li class='sidebar-item'><a href='prestamo.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Prestamo </span></a></li>";
+                                    }
+                                ?>
                             </ul>
                         </li>
 
-                        
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span
-                                    class="hide-menu">Empleados</span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="empleados_ingresar.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Empleado
-                                            </span></a></li>
-                                    <li class="sidebar-item"><a href="empleados_listar.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Empleados
-                                            </span></a></li>
-                                  
-                                </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span
-                                    class="hide-menu">Cliente</span></a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item"><a href="registrar_cliente.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Registrar Cliente
-                                            </span></a></li>
-                                    <li class="sidebar-item"><a href="vercliente.php" class="sidebar-link"><i
-                                                class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Cliente
-                                            </span></a></li>
-                                    
-                                </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                        <?php 
+                            if ($_SESSION['cargo'] == 'Gerente') {
+                                echo "<li class='sidebar-item'> <a class='sidebar-link has-arrow waves-effect waves-dark' href='javascript:void(0)' aria-expanded='false'><i class='fas fa-folder-open'></i><span class='hide-menu'>Datos Maestros</span></a>";
+                                echo   "<ul aria-expanded='false' class='collapse  first-level'>";
+                                echo   "<li class='sidebar-item'><a href='tipo_transaccion.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-men'> Tipo Transacción </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='ver_transaccion.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-men'> Ver Tipo Transacción </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='catalogo.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Tipo Cuenta </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='ver_cuenta.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Ver Tipo Cuenta </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='genero.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Registrar Género </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='cargo.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Registrar Cargo </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='ver_cargo.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Ver Cargo </span></a></li></ul>";
+                                echo "</li>";  
+                            }
+                        ?>
+                        <?php 
+                            if ($_SESSION['cargo'] == 'Gerente') {
+                                echo "<li class='sidebar-item'> <a class='sidebar-link has-arrow waves-effect waves-dark' href='javascript:void(0)' aria-expanded='false'><i class='fas fa-users'></i><span class='hide-menu'>Empleados</span></a>";
+                                echo   "<ul aria-expanded='false' class='collapse  first-level'>";
+                                echo   "<li class='sidebar-item'><a href='empleados_ingresar.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-men'> Registrar Empleado </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='empleados_listar.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-men'> Listar Empleados </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='lista_usuario.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Ver Usuario </span></a></li></ul>";
+                                echo "</li>";  
+                            }
+                        ?>
+                        <?php 
+                            if ($_SESSION['cargo'] == 'Gerente') {
+                                echo "<li class='sidebar-item'> <a class='sidebar-link has-arrow waves-effect waves-dark' href='javascript:void(0)' aria-expanded='false'><i class='fas fa-user'></i><span class='hide-menu'>Cliente</span></a>";
+                                echo   "<ul aria-expanded='false' class='collapse  first-level'>";
+                                echo   "<li class='sidebar-item'><a href='registrar_cliente.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-men'> Registrar Cliente </span></a></li>";
+                                echo   "<li class='sidebar-item'><a href='vercliente.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Listar Cliente </span></a></li></ul>";
+                                echo "</li>";  
+                            }
+                        ?>
+                       <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span
                                     class="hide-menu">Usuario</span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
@@ -211,7 +181,7 @@
                                             </span></a></li>
                                   
                                   
-                                </ul>
+                                </ul> -->
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="fas fa-retweet"></i><span
@@ -220,12 +190,14 @@
                                 <li class="sidebar-item"><a href="consultas.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Consultas 
                                         </span></a></li>
-                                <li class="sidebar-item"><a href="depositos.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Depositos
-                                        </span></a></li>
-                                 <li class="sidebar-item"><a href="retiros.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Retiros
-                                        </span></a></li>
+                                
+                                <?php
+                                    if ($_SESSION['cargo'] == 'Gerente' or $_SESSION['cargo'] == 'Caja') {
+                                        echo "<li class='sidebar-item'><a href='depositos.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Depositos </span></a></li>";
+                                        echo "<li class='sidebar-item'><a href='retiros.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Retiros </span></a></li>";
+                                        echo "<li class='sidebar-item'><a href='pago_cuota.php' class='sidebar-link'><i class='mdi mdi-note-plus'></i><span class='hide-menu'> Pago Cuota </span></a></li>";
+                                    }
+                                ?>
                                  <li class="sidebar-item"><a href="plazofijo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plazo Fijo
                                         </span></a></li>

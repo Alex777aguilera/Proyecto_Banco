@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if ($_SESSION['cargo'] != 'Gerente' && $_SESSION['cargo'] != 'Escritorio' && $_SESSION['cargo'] != 'Caja') {
+  if ($_SESSION['cargo'] != 'Gerente' && $_SESSION['cargo'] != 'Escritorio') {
     header("location:redireccion.php");
   }
 ?>
