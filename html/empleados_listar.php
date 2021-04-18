@@ -1,4 +1,11 @@
 <?php
+  session_start();
+  if ($_SESSION['cargo'] != 'Gerente') {
+    header("location:redireccion.php");
+  }
+?>
+
+<?php
     require('conexion.php');
     $sql_gen = "SELECT * FROM registroempleado";
     $result1 = mysqli_query($con, $sql_gen);

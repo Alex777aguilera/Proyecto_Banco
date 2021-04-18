@@ -1,4 +1,11 @@
 <?php
+  session_start();
+  if ($_SESSION['cargo'] != 'Gerente' ) {
+    header("location:redireccion.php");
+  }
+?>
+
+<?php
     require('conexion.php');
 
     if(isset($_POST['accion'])){

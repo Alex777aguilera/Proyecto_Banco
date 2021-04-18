@@ -1,4 +1,9 @@
-
+<?php
+  session_start();
+  if ($_SESSION['cargo'] != 'Gerente') {
+    header("location:redireccion.php");
+  }
+?>
 
 
 <!DOCTYPE html>

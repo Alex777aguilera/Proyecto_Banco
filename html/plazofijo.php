@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if ($_SESSION['cargo'] != 'Gerente' && $_SESSION['cargo'] != 'Caja' ) {
+    header("location:redireccion.php");
+  }
+?>
 <!DOCTYPE html>
 <html dir="Banco_web" lang="en">
 <head>

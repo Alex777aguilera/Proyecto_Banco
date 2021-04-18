@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if ($_SESSION['cargo'] != 'Gerente' && $_SESSION['cargo'] != 'Caja' ) {
+    header("location:redireccion.php");
+  }
+?>
 <!DOCTYPE html>
 <html dir="Banco_web" lang="en">
 <head>
@@ -92,12 +98,7 @@
                                                     echo "<td>" . $row['tasa'] ."%". "</td>";
                                                     echo "<td>" . $row['plazo'] ." años" ."</td>";
                                                     echo "<td>" . $row['montoFijo'] . "</td>";
-                                                    echo "<td>" . "<form action='proyeccion.php' method='post'> ";
-                                                    echo "<?php $filtro1 ?>";
-                                                    echo "<input class='btn btn-success text-white' type='submit' value= 'Proyección' > ";
-                                                    echo "</form>" . "</td>";
-
-                                                    
+                                      
                                                 }
                                                 
                                         echo "</tr>";

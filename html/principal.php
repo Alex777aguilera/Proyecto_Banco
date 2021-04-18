@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "conexion.php";
 //---------------------------------------------------------------------------------------------//
 //Preparar la consulta para la base de datos
@@ -249,12 +249,13 @@ include 'enlaces_fn.php';
                                     datasets: [{
                                         label: 'Grafico de clientes por genero', //nombre del grafico
                                         backgroundColor: [ //arreglo que contiene los colores del grafico, si agregamos elementos agregamos colores
-                                            'rgba(54, 162, 235, 0.9)',
                                             'rgb(255, 99, 132,0.9)',
+                                            'rgba(54, 162, 235, 0.9)',
+                                            
                                         ],
                                         borderColor: [ //colores de los borders del grafico
-                                            'rgba(54, 162, 235, 0.9)',
                                             'rgb(255, 99, 132,0.9)',
+                                            'rgba(54, 162, 235, 0.9)',
 
                                         ],
                                         data: datos_g //variable que contiene los datos
