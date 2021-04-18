@@ -6,8 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Principal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<title>Tipo de Cuenta</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 </head>
@@ -49,73 +48,25 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Tipo de Cuenta</h4>
                                     <div class="form-group row">
-                                        <label for="fname"
-                                            class="col-sm-3 text-end control-label col-form-label">Descripcion</label>
-                                        <div class="col-sm-9">
+                                        <label for="fname" required
+                                            class="col-sm-4 text-end control-label col-form-label">Descripcion</label>
+                                        <div class="col-sm-4">
                                             <input type="text" class="form-control" id="txt_cuenta" name="txt_cuenta"
                                                 placeholder="Descripcion de la Cuenta">
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                        <button type="submit" name="save" value="save" class="btn btn-primary" style= margin-left:10px>Submit</button>
                                         </div>
                                     </div>
                                     
                                 </div>
                                 <div class="border-top">
-                                    <div class="card-body">
                                     
-                                        <button type="submit" name="save" value="save" class="btn btn-primary" style= margin-left:80px>Submit</button>
-                                    </div>
                                 </div>
                             </form>
 
-                            <?php
-                              require_once "conexion.php";
-
-
-                                   $sql = "SELECT *
-                                   FROM tipoCuenta ";
-                                   if($result = mysqli_query($con, $sql)){
-                                      if(mysqli_num_rows($result) > 0) {
-                               
-                                          echo "<div class='row'>";
-                                          echo "<div class='col-md-10' style= margin-left:100px>";
-                                          echo "<div class='card'>";
-                                          echo "<table class='table table-bordered table-striped'>";
-                                          echo "<thead>";
-                                          echo "<tr>";
-                                          echo "<th>ID</th>";
-                                          echo "<th>Descripcion Tipo transaccion</th>";
-                                          echo "</tr>";
-                                          echo "</thead>";
-                                          echo "<tbody>";
-                                          while($row = mysqli_fetch_array($result)){
-                                          echo "<tr>";
-                                          echo "<td>" . $row['idTipoCuenta'] . "</td>";
-                                          echo "<td>" . $row['descripcion'] . "</td>";
-                                          echo "<td>";
-                                          echo "<a href='update_cuenta.php?id=". $row['idTipoCuenta'] ."' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                          echo "<a href='delete_cuenta.php?id=". $row['idTipoCuenta'] ."' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                          echo "</td>";
-                                          }
-                                         echo "</tbody>";
-                                         echo "</table>";
-                                         echo "</div>";
-                                         echo "</div>";
-                                         echo "</div>";
-
-
-                                          mysqli_free_result($result);;
-                                         }else{
-                                         echo "<p class='lead'><em>No Existe</em></p>";
-                                        }
-                                        }
-
-
-                                       
-                    //cerrar conexion
-                                         mysqli_close($con);
-                
-                        
-                              
-                            ?>
+                            
 
                            
 

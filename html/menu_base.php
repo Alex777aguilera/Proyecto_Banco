@@ -201,9 +201,17 @@
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
+                                
+                                <li class="sidebar-item"><a href="ver_transaccion.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Transaccion
+                                        </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Cuenta</span></a></li>
+
+                                <li class="sidebar-item"><a href="ver_cuenta.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Tipo Cuenta</span></a></li>
+
 
                                  <li class="sidebar-item"><a href="plan_pago.php" class="sidebar-link"><i
                                             class="mdi mdi-note-plus"></i><span class="hide-menu"> Plan Pago
@@ -235,6 +243,9 @@
                                 <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
                                         </span></a></li>    
+
+                                <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
                             </ul>
                         </li>
 
