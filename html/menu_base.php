@@ -2,6 +2,11 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
+        <?php
+            session_start();
+            
+        ?>
+
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin5">
@@ -61,6 +66,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
+                    <span class="text-white">Bienvenido<?php echo $_SESSION['nombreCompleto']; ?></span>
                     <ul class="navbar-nav float-end">
                         <!-- ============================================================== -->
                         <!-- Comment -->
@@ -79,7 +85,10 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
+
+
                         <li class="nav-item dropdown">
+
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
                             </a>
@@ -120,12 +129,12 @@
                         
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-cog"></i><span
                                     class="hide-menu">Opciones </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 
                                 <li class="sidebar-item"><a href="tipo_transaccion.php" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Tipo Transaccion
+                                            class="fas fa-hand-holding-usd"></i><span class="hide-menu"> Tipo Transaccion
                                         </span></a></li>
 
                                 <li class="sidebar-item"><a href="catalogo.php" class="sidebar-link"><i
@@ -168,7 +177,7 @@
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span
                                     class="hide-menu">Empleados</span></a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item"><a href="empleados_ingresar.php" class="sidebar-link"><i
@@ -184,7 +193,7 @@
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="fas fa-retweet"></i><span
                                     class="hide-menu">Transacciones </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="consultas.php" class="sidebar-link"><i

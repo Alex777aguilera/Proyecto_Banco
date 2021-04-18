@@ -68,7 +68,7 @@
                                                  foreach ($data as $valores) {
                                                     $sl = ''.$valores[estadoLetra]. '';
                                                     if ($sl == 1) {
-                                                        $sl = "Ativo";
+                                                        $sl = "No Cancelado";
                                                     
                                                      echo '<option value='.$valores[idPlanPago].'>'.$valores[idPlanPago].'-'.$valores[nombres].'-'.$valores[apellidos]. '-' .$valores[letraMensual]. '-' .$sl.'</option>';
                                                     }
