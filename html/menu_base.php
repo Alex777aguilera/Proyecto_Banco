@@ -66,7 +66,7 @@
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
-                    <span class="text-white">Bienvenido<?php echo $_SESSION['nombreCompleto']; ?></span>
+                    <span class="text-white">Bienvenido <?php echo $_SESSION['nombreCompleto']; ?></span>
                     <ul class="navbar-nav float-end">
                         <!-- ============================================================== -->
                         <!-- Comment -->
@@ -180,17 +180,17 @@
 
                                 <li class="sidebar-item"><a href="cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Registrar cargo
-<<<<<<< HEAD
+
                                         </span></a></li>    
 
                                 <li class="sidebar-item"><a href="ver_cargo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Ver Cargo</span></a></li>
-=======
+
                                         </span></a></li>  
                                         <li class="sidebar-item"><a href="prestamo.php" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Prestamo
                                         </span></a></li>  
->>>>>>> 9ba3ecba44e9c5659d24d42d3db25516b5d0c4df
+
                             </ul>
                         </li>
 

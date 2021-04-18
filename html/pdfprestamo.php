@@ -26,6 +26,7 @@
 	$ncuenta = "". $row['numeroCuenta'] ."";
 
 	$mpdf = new \Mpdf\Mpdf();
+      $mpdf->WriteHTML("<hr>");
 			$mpdf->WriteHTML("<h2 style='margin-left: 260px;'>* PRESTAMO *</h2>" );
 $mpdf->WriteHTML("<hr>");
         $mpdf->WriteHTML("<img src='../assets/images/LogoOB.png' alt='homepage' class='light-logo' width='350px' height='150px' style='margin-left: 165px;'/>");
@@ -62,13 +63,57 @@ $mpdf->WriteHTML("<hr>");
             $mpdf->WriteHTML("<br>" );				
             $mpdf->WriteHTML("<br>" );
             $mpdf->WriteHTML("<b>Saldo del Plan de PagoCuota: </b> $s" );
-            $mpdf->WriteHTML("<br>" ); 
             $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );  
-$mpdf->WriteHTML("<hr>");
+            $mpdf->WriteHTML("<br>" );
 $mpdf->WriteHTML("<hr>");
 
-
+$mpdf->WriteHTML("<br>" );
+$mpdf->WriteHTML("<hr>");     
+$mpdf->WriteHTML("<h2 style='margin-left: 220px;'>* Registros de Pagos *</h2>" ); 
+$sql = "SELECT * FROM `plandepago` WHERE idPrestamo = '6'"; 
+if($result = mysqli_query($con, $sql)){
+        if(mysqli_num_rows($result) > 0)
+        {
+$mpdf->WriteHTML("<table id='zero_config' class='table table-striped table-bordered'>");
+                            $mpdf->WriteHTML("<thead>");
+                                $mpdf->WriteHTML("<tr>");
+                                    $mpdf->WriteHTML("<th>| ID |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| Codigo |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>|  Monto |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| Interes |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| L. Mensual |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| Fecha |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| Estado |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| #Cuota |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                    $mpdf->WriteHTML("<th>| Saldo |</th>");
+                                    $mpdf->WriteHTML("<hr>");
+                                $mpdf->WriteHTML("</tr>");
+                            $mpdf->WriteHTML("</thead>");
+                            $mpdf->WriteHTML("<tbody>");
+                            while($row = mysqli_fetch_array($result)){
+                            $mpdf->WriteHTML("<tr>");
+                            $mpdf->WriteHTML("<td><center>" . $row['idPlanPago'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>". $row['idPrestamo'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['monto'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['intereses'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['letraMensual'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['fechaPago'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['estadoLetra'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['numeroCuota'] . "</centyer></td>");
+                            $mpdf->WriteHTML("<td><center>" . $row['saldo'] . "</centyer></td>");
+                            }
+                        $mpdf->WriteHTML("</tbody>");
+                    $mpdf->WriteHTML("</table>");
+            }
+      }
 	// $name = 'PagoCuota.pdf';
 	$mpdf->Output('Prestamo.pdf', 'I');
 	}else{
