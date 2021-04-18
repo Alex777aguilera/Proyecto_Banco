@@ -6,7 +6,7 @@
         header("location:pago_cuota.php");
     }else if($_SESSION['cargo'] == 'Escritorio'){
         header("location:formularios.php");
-    }else if(is_null($_SESSION['cargo'])){
+    }else if(isset($_SESSION['cargo'])){
         header("location:index.php");
     }
 ?>
