@@ -62,10 +62,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
                                         <?php
                                             if (mysqli_num_rows($result1) > 0) {
                                                 while($row = mysqli_fetch_assoc($result1)) {
+                                                    echo "<tr>";
                                                     echo "<td>" . $row["idRegistroEmpleado"]. "</td>";
                                                     echo "<td>" . $row["identidad"]. "</td>";
                                                     echo "<td>" . $row["nombres"]. "</td>";
@@ -74,13 +74,12 @@
                                                     echo "<td>" . $row["direccion"]. "</td>";
                                                     echo "<td>" . $row["idCargo"]. "</td>";
                                                     echo "<td>" . $row["idGenero"]. "</td>";
+                                                    echo "</tr>";
                                                 }
                                             } else {
                                                 echo "<th colspan='8'>No hay registros.</th>";
                                             }
                                         ?>
-                                        <td></td>
-                                    </tr>
                                 </tbody>
                             </table>
 

@@ -346,7 +346,7 @@ include 'enlaces_fn.php';
                         </script>
                     </div>
                     <div class="col-md-6">
-                        <h4>Clientes por genero</h4>
+                        <h4>Movimiento por Fecha</h4>
                         <hr>
                         <canvas id="grafico4"></canvas>
                         <script>
