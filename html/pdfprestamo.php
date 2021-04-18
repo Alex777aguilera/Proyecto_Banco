@@ -70,7 +70,7 @@ $mpdf->WriteHTML("<hr>");
 $mpdf->WriteHTML("<br>" );
 $mpdf->WriteHTML("<hr>");     
 $mpdf->WriteHTML("<h2 style='margin-left: 220px;'>* Registros de Pagos *</h2>" ); 
-$sql = "SELECT * FROM `plandepago` WHERE idPrestamo = '6'"; 
+$sql = "SELECT * FROM `plandepago` WHERE idPrestamo = '$idpr'"; 
 if($result = mysqli_query($con, $sql)){
         if(mysqli_num_rows($result) > 0)
         {

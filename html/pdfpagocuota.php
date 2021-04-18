@@ -5,7 +5,13 @@ if ($_GET==true) {
 
 require_once '../vendor/autoload.php';
 require_once ('conexion.php');
-$sql = "SELECT * FROM `pagoletra` as pl INNER JOIN plandepago as pp ON pl.idPlanPago = pp.idPlanPago INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE idPagoLetra = '$id' ";
+$sql = "SELECT pl.idPagoLetra, rc.nombres, rc.apellidos,pp.idPlanPago,
+pr.monto as montoPrestamo, pp.monto as montoPlanPago, pp.Intereses,pr.tasa,rc.ingresosTotales
+FROM `pagoletra` as pl INNER JOIN plandepago as pp ON pl.idPlanPago = pp.idPlanPago 
+INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo 
+INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta 
+INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente 
+WHERE idPagoLetra = '$id' ";
 
 
 $result = mysqli_query($con, $sql);
@@ -13,12 +19,16 @@ $row = mysqli_fetch_array($result);
 $idl = "". $row['idPagoLetra'] ."";
 $nc = "". $row['nombres'] ." ". $row['apellidos'] ."";
 $idp = "". $row['idPlanPago'] ."";
-$mpr = "". $row['monto'] ."";
-$mp = "". $row['montoPagado'] ."";
-$fp = "". $row['fechaPago'] ."";
-$int = "". $row['intereses'] ."";
-$plz = "". $row['plazo'] ."";
+$mpr = "". $row['montoPrestamo'] ."";
+$mp = "". $row['montoPlanPago'] ."";
+$fp = "". date("Y-m-d") ."";
+$int = "". $row['Intereses'] ."";
+$tasa = "". $row['tasa'] ."";
 $it = "". $row['ingresosTotales'] ."";
+
+
+
+
 
 $mpdf = new \Mpdf\Mpdf();
 
@@ -29,30 +39,15 @@ $mpdf->WriteHTML("<hr>");
             $mpdf->WriteHTML("<br>" ); 
             $mpdf->WriteHTML("<b>Nombre del Cliente:</b> $nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha: </b> $fp " );
             $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );
             $mpdf->WriteHTML("<b>Codg Plan de Pago: </b> $idp" );
             $mpdf->WriteHTML("<br>" ); 
+            $mpdf->WriteHTML("<b>Cuota: </b> $mp" );
             $mpdf->WriteHTML("<br>" ); 
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<b>Pago Letra Mensual: </b> $mp" );
-            $mpdf->WriteHTML("<br>" ); 
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<b>Intereses del Prestamo: </b> $int" );
-            $mpdf->WriteHTML("<br>" ); 
-            $mpdf->WriteHTML("<br>" ); 
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<b>Plazo: </b> $plz años" );
+            $mpdf->WriteHTML("<b>Intereses de la cuota: </b> $int" );
             $mpdf->WriteHTML("<br>" );  
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<b>Taza: </b> $plz" );
+            $mpdf->WriteHTML("<b>Tasa: </b> $tasa" );
             $mpdf->WriteHTML("<br>" );  
-            $mpdf->WriteHTML("<br>" );
-            $mpdf->WriteHTML("<br>" );
             $mpdf->WriteHTML("<b>Prestamo Adquirido: </b> $mpr" );
-            $mpdf->WriteHTML("<br>" );
             $mpdf->WriteHTML("<br>" );
             $mpdf->WriteHTML("<b>Ingresos Totales son: </b> $it" );
             $mpdf->WriteHTML("<br>" ); 

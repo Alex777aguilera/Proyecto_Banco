@@ -1,6 +1,8 @@
 <?php
     require_once "conexion.php";
-    $sql = "SELECT * FROM `pagoletra` as pl 
+    $sql = "SELECT pl.idPagoLetra, pp.idPlanPago,rc.nombres,rc.apellidos,
+    pp.monto
+    FROM `pagoletra` as pl 
     INNER JOIN plandepago as pp ON pl.idPlanPago = pp.idPlanPago 
     INNER JOIN prestamos AS pr ON pp.idPrestamo = pr.idPrestamo 
     INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta 
@@ -29,8 +31,8 @@
                             echo "<td>" . $row['idPagoLetra'] . "</td>";
                             echo "<td>" . $row['idPlanPago'] . "</td>";
                             echo "<td>" . $row['nombres'] . " ". $row['apellidos'] ."</td>";
-                            echo "<td>" . $row['montoPagado'] . "</td>";
-                            echo "<td>" . $row['fechaPago'] . "</td>";
+                            echo "<td>" . $row['monto'] . "</td>";
+                            echo "<td>" . date("Y-m-d") . "</td>";
                             
                             echo "<td>";
 
