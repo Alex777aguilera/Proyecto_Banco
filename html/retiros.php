@@ -33,8 +33,8 @@
 	    <div class="container-fluid">
             <!-- Metodo donde mandamos el filtro y el monto retirado de la cuenta-->
             <form action="retiros.php" method="post">
-                    <h5 class="page-title">No.Cuenta</h5><input id="cuenta" name="cuenta" type="text">
-                    <h5 class="page-title">Monto</h5><input id="monto" name="monto" type="text">
+                    <h5 class="page-title">No.Cuenta</h5><input id="cuenta" name="cuenta" type="text" require>
+                    <h5 class="page-title">Monto</h5><input id="monto" name="monto" type="text" require>
                     <input type="submit" value="Guardar">
                     <?php
                     //inicializadas en cero para evitar errores de undefined
@@ -98,31 +98,37 @@
                             if($result = mysqli_query($con, $sql)){
                                 if(mysqli_num_rows($result) > 0)
                                 {
-                                    echo "<table class='table table-bordered table-striped'>";
-                                        echo "<thead>";
-                                            echo "<tr>";
-                                                echo "<th>No.Cuenta</th>";
-                                                echo "<th>Nombres</th>";
-                                                echo "<th>Fecha</th>";
-                                                echo "<th>Monto Retirado</th>";
-                                                echo "<th>Saldo Anterior</th>";
-                                                echo "<th>Saldo Actual</th>";
-                                            echo "</tr>";
-                                        echo "</thead>";
-                                        echo "<tbody>";
-                                        while($row = mysqli_fetch_array($result)){
-                                            echo "<tr>";
-                                                echo "<td>" . $row['idCuenta'] . "</td>";
-                                                echo "<td>" . $row['nombres'] . "</td>";
-                                                echo "<td>" . $row['fechaTransaccion'] . "</td>";
-                                                echo "<td>" . $row['montoTransaccion'] . "</td>";
-                                                echo "<td>" . $row['saldoActual'] . "</td>";
-                                                echo "<td>" . $row['saldoTotal'] . "</td>";
-                                            echo "</tr>";
-                                        }
-                                        echo "</tbody>";
-                                    echo "</table>";
-
+                                    echo "<div class='card'>";
+                                    echo "<div class='card-body'>";
+                                        echo "<h5 class='card-title'>Basic Datatable</h5>";
+                                            echo "<div class='table-responsive'>";
+                                                echo "<table id='zero_config' class='table table-bordered table-striped'>";
+                                                    echo "<thead>";
+                                                        echo "<tr>";
+                                                            echo "<th>No.Cuenta</th>";
+                                                            echo "<th>Nombres</th>";
+                                                            echo "<th>Fecha</th>";
+                                                            echo "<th>Monto Depositado</th>";
+                                                            echo "<th>Saldo Anterior</th>";
+                                                            echo "<th>Saldo Actual</th>";
+                                                        echo "</tr>";
+                                                    echo "</thead>";
+                                                    echo "<tbody>";
+                                                        while($row = mysqli_fetch_array($result)){
+                                                            echo "<tr>";
+                                                                echo "<td>" . $row['idCuenta'] . "</td>";
+                                                                echo "<td>" . $row['nombres'] . "</td>";
+                                                                echo "<td>" . $row['fechaTransaccion'] . "</td>";
+                                                                echo "<td>" . $row['montoTransaccion'] . "</td>";
+                                                                echo "<td>" . $row['saldoActual'] . "</td>";
+                                                                echo "<td>" . $row['saldoTotal'] . "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                     echo "</tbody>";
+                                                echo "</table>";
+                                             echo "</div>"; 
+                                        echo "</div>";
+                                    echo "</div>";
                                     mysqli_free_result($result);;
                                 }else{
                                     echo "<p class='lead'><em>No hay regitros</em></p>";
@@ -146,3 +152,9 @@
 </body>
 <?php require_once('enlaces.php'); ?>	
 </html>
+
+<script>
+
+$('#zero_config').DataTable();
+
+</script>

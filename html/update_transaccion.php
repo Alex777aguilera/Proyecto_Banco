@@ -1,45 +1,44 @@
 
-<?php
 
-include("conexion.php");
-                
-
-  
-if (isset($_POST['update'])) {
-    
-	$id = $_GET['id'];
-    $descripcion = $_POST['txt_transaccion'];
-    $query = "UPDATE tipotransaccion set  descripcion = '$descripcion' ";
-    $result = mysqli_query($con, $query);
-        if(!$result) {
-             die("Query Failed.");
-        }
-                          
-    $_SESSION['message'] = 'Task Saved Successfully';
-    $_SESSION['message_type'] = 'success';
-     header('Location: catalogo.php');
-    
-	
-}
-
-
-
-?>
 
 <!DOCTYPE html>
 <html dir="Banco_web" lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Principal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<title>Actualizar Tipo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 </head>
 <body>
+
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-	<?php require_once('menu_base.php'); ?>	
+        <?php
+
+$id = $_GET['id'];
+
+require_once "conexion.php";
+$sql = "SELECT tipotransaccion FROM descripcion WHERE idTipoTransaccion = $id;";
+if($result = mysqli_query($con,$sql)){
+    if(mysqli_num_rows($result) > 0)
+    {
+    
+                        while($row = mysqli_fetch_array($result)){
+                        $id = $row['idTipoTransaccion'];
+                        $identidad  = $row['descripcion'];
+                        
+                    }
+        mysqli_free_result($result);;
+    }else{
+        echo "<p class='lead'><em>No hay regitros</em></p>";
+    }
+}
+
+?>
+<?php require_once('menu_base.php'); ?>	
+
+	
 
 
     <div class="page-wrapper">
@@ -67,24 +66,29 @@ if (isset($_POST['update'])) {
 	     	<div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <form class="form-horizontal"  action="update_transaccion.php" method="POST">
+                            <form class="form-horizontal"  action="update_transaccion.php" method="POST" id="ajax" >
                                 <div class="card-body">
-                                    <h4 class="card-title">Tipo Transaccion</h4>
+                                
+                                    <h4 class="card-title">Actualizar Tipo Transaccion</h4>
+                                    
                                     <div class="form-group row">
+                                
+                                 
+                                       <input type="text" class="form-control"  visibility: hidden name="id" id="id" placeholder="ID"    required value="<?php echo $id ?>" >
                                         <label for="fname"
-                                            class="col-sm-2 text-end control-label col-form-label">Descripcion</label>
-                                        <div class="col-sm-3">
-                                           
-                                            <input type="text" class="form-control" name="txt_transaccion" id="txt_transaccion" 
-                                                placeholder="Descripcion de la Transaccion">
+                                            class="col-sm-4 text-end control-label col-form-label">Descripcion</label>
+                                        <div class="col-sm-4">
+        
+                                            <input type="text"  required class="form-control" name="descripcion" id="descripcion" 
+                                                placeholder="Descripcion de la Transaccion" >
                                                 
                                         </div>
 
                                         <div class="col-sm-4">
-                                        <button type="submit" name="update" value="update"  class="btn btn-primary" style= margin-left:80px >Update</button>
+                                        <button type="submit" name="update" value="update" id="btnactualizar" class="btn btn-primary" style= margin-left:10px >Update</button>
                                         </div>
 
-                                    </div>
+                                    
                                     
                                 </div>
                             
@@ -92,57 +96,7 @@ if (isset($_POST['update'])) {
                             
 
 
-                            <?php
-                              require_once "conexion.php";
-
-
-                                   $sql = "SELECT *
-                                   FROM tipotransaccion ";
-                                   if($result = mysqli_query($con, $sql)){
-                                      if(mysqli_num_rows($result) > 0) {
-                               
-                                          echo "<div class='row'>";
-                                          echo " <div  style= margin-left:80px>";
-                                          echo "<div class='card'>";
-                                          echo "<table class='table table-bordered table-striped' style= width:600px>";
-                                          echo "<thead>";
-                                          echo "<tr>";
-                                          echo "<th>ID</th>";
-                                          echo "<th>Descripcion Tipo transaccion</th>";
-                                          echo "<th>Accion</th>";
-                                          echo "</tr>";
-                                          echo "</thead>";
-                                          echo "<tbody>";
-                                          while($row = mysqli_fetch_array($result)){
-                                          echo "<tr>";
-                                          echo "<td>" . $row['idTipoTransaccion'] . "</td>";
-                                          echo "<td>" . $row['descripcion'] . "</td>";
-                                          echo "<td>";
-                                          echo "<a href='update_transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Actualizar' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                          echo "<a href='delete_Transaccion.php?id=". $row['idTipoTransaccion'] ."' title='Eliminar' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                          echo "</td>";
-                             
-                                         
-                                        
-                                          }
-                                         echo "</tbody>";
-                                         echo "</table>";
-                                         echo "</div>";
-                                         echo "</div>";
-                                         echo "</div>";
-
-
-                                          mysqli_free_result($result);;
-                                         }else{
-                                         echo "<p class='lead'><em>No Existe</em></p>";
-                                        }
-                                        }
-                    
-                                        
-                
-                        
-                              
-                            ?>
+                            
                         </div>     
                     </div>
             </div>  
@@ -199,5 +153,44 @@ if (isset($_POST['update'])) {
         var quill = new Quill('#editor', {
             theme: 'snow'
         });
+
+    </script>
+
+<script>
+$('#zero_config').DataTable();
+
+function dato(valor) {
+    
+alert(valor);
+    
+}
+
+$(document).ready(function(){
+        $('#btnactualizar').click(function(){
+            var datos=$('#ajax').serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "actualizar_transaccion.php",
+                data: datos,
+                success:function(r){
+                    if(r==1){
+                        alert("SE AGREGO EXITOSAMENTE");
+                        
+                        $('#descripcion').val('');
+                        $('#id').val('');
+                        
+                        window.location.href = "ver_transaccion.php";
+
+                    }
+                    else{
+                        alert("LOS CAMPOS ESTAN VACIOS");
+                    }
+                }
+
+            });
+            return false;
+      });
+    });
 
     </script>

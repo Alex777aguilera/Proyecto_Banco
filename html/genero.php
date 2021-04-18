@@ -41,20 +41,22 @@
                                     <h4 class="card-title">Genero</h4>
                                     <div class="form-group row">
                                         <label for="fname"
-                                            class="col-sm-3 text-end control-label col-form-label">Descripcion</label>
-                                        <div class="col-sm-9">
+                                            class="col-sm-4 text-end control-label col-form-label">Descripcion</label>
+                                        <div class="col-sm-4">
                                             <input type="text" class="form-control" name="txt_genero" id="txt_genero" 
-                                                placeholder="Descripcion del Genero">
+                                                placeholder="Descripcion del Genero" required>
                                             
                                         </div>
+
+                                        <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary" name="save2" value="save2">Guardar</button>
+                                         </div>
                                     </div>
                                     
                                 </div>
 
                                 <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="submit" class="btn btn-primary" name="save2" value="save2">Guardar</button>
-                                    </div>
+                                    
                                 </div>
                             </form>
                             
