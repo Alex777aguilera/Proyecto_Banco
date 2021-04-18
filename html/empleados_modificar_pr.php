@@ -6,7 +6,7 @@ if(isset($_POST['accion']) AND $_POST['accion'] == "actualizar"){
     $resultado = mysqli_query($con, $sql);
 
     if (mysqli_affected_rows($con)>0) {
-    	echo "<script>alert('Guardado exitosamente.');</script>";
+    	echo "<script>alert('Actualizado exitosamente.');</script>";
     	echo "<script> window.location.href = 'empleados_modificar_consulta.php'; </script>";
     }
     else{
@@ -15,8 +15,8 @@ if(isset($_POST['accion']) AND $_POST['accion'] == "actualizar"){
     }
 
 } elseif (isset($_POST['accion']) AND $_POST['accion'] == "eliminar") {
-    $sql = "DELETE FROM registroempleado WHERE idRegistroEmpleado='". $_POST['idEmpleado'] ."'";
 
+    $sql = "DELETE FROM registroempleado WHERE idRegistroEmpleado='". $_POST['idEmpleado'] ."'";
     $resultado = mysqli_query($con, $sql);
 
     if (mysqli_affected_rows($con)>0) {
@@ -24,7 +24,7 @@ if(isset($_POST['accion']) AND $_POST['accion'] == "actualizar"){
         echo "<script> window.location.href = 'empleados_modificar_consulta.php'; </script>";
     }
     else{
-        echo "<script>alert('ERROR: No se pudo guardar el registro.');</script>";
+        echo "<script>alert('ERROR: No se pudo Eliminar el registro.');</script>";
         echo "<script> window.location.href = 'empleados_modificar_consulta.php'; </script>";
     }
 }
