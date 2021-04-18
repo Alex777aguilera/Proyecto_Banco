@@ -59,7 +59,7 @@
 	    <div class="container-fluid">
             
 	     	<div class="row">
-                    <div class="col-md-6">
+                    <div class="col-12">
                         <div class="card">
                             <form class="form-horizontal" id="formulario" action="empleados_ingresar_pr.php" method="POST">
                                 <div class="card-body">
@@ -70,22 +70,22 @@
                                         <label for="identidad"
                                             class="col-sm-3 text-end control-label col-form-label">N° de Identidad</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txtIdentidad" name="identidad" 
-                                                placeholder="0000-0000-00000. Escriba aquí su número de identidad (RNP)." autocomplete="off">
+                                            <input type="text" class="form-control" id="identidad" name="identidad" 
+                                                placeholder="Escriba aquí su número de identidad (RNP)." autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nombre"
                                             class="col-sm-3 text-end control-label col-form-label">Nombre</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txtNombre" name="nombre" 
+                                            <input type="text" class="form-control" id="nombre" name="nombre" 
                                                 placeholder="Escriba aquí su nombre" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="apellido" class="col-sm-3 text-end control-label col-form-label">Apellido</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txtApellido" name="apellido" 
+                                            <input type="text" class="form-control" id="apellido" name="apellido" 
                                                 placeholder="Escriba aquí su apellido" autocomplete="off">
                                         </div>
                                     </div>
@@ -93,19 +93,26 @@
                                         <label for="direccion"
                                             class="col-sm-3 text-end control-label col-form-label">Dirección</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="txtDireccion" name="direccion" 
+                                            <input type="text" class="form-control" id="direccion" name="direccion" 
                                                 placeholder="Escriba su dirección completa aquí (100 carácteres max.)" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="direccion"
+                                            class="col-sm-3 text-end control-label col-form-label">Edad</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="edad" name="edad" 
+                                                placeholder="Escriba la Edad" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                     <label for="cono1"
                                             class="col-sm-3 text-end control-label col-form-label">Género</label>
                                         <div class="col-sm-3">
-                                            <select class="select2 form-select shadow-none" id="cbxGenero" name="genero" 
+                                            <select class="select2 form-select shadow-none" id="genero" name="genero" 
                                                 style="width: 100%; height:36px;">
                                                 <option>Seleccione su género</option>
-                                                <optgroup label="Binario">
-                                                    <?php
+                                                     <?php
                                                             if (mysqli_num_rows($result1) > 0) {
                                                               while($row = mysqli_fetch_assoc($result1)) {
                                                                 echo "<option value='" . $row["idGenero"]. "'>" . $row["genero"]. "</option>";
@@ -114,12 +121,7 @@
                                                               echo "<option>No hay registros.</option>";
                                                             }
                                                     ?>
-                                                </optgroup>
-                                                <!--
-                                                <optgroup label="No Binario">
-                                                    <option value="otros">Otros</option>
-                                                </optgroup>
-                                                -->
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -127,10 +129,10 @@
                                     <label for="cono1"
                                             class="col-sm-3 text-end control-label col-form-label">Cargo</label>
                                         <div class="col-sm-3">
-                                            <select class="select2 form-select shadow-none" id="cbxCargo" name="cargo" 
+                                            <select class="select2 form-select shadow-none" id="cargo" name="cargo" 
                                                 style="width: 100%; height:36px;">
                                                 <option>Seleccione su cargo</option>
-                                                <optgroup label="Tipo de Usuario">
+                                    
                                                     <?php
                                                             if (mysqli_num_rows($result2) > 0) {
                                                               while($row = mysqli_fetch_assoc($result2)) {
@@ -140,20 +142,16 @@
                                                               echo "<option>No hay registros.</option>";
                                                             }
                                                     ?>
-                                                </optgroup>
+                                               
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="edad" class="col-sm-3 text-end control-label col-form-label">Fecha de Nacimiento:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="txtFechaEdad" name="fechaEdad" class="form-control mydatepicker" placeholder="dd/mm/yyyy" autocomplete="off">
-                                        </div>
-                                    </div>
+                                    
+                                    
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary" onclick="revisarCampos()">Registrar empleado</button>
+                                        <button type="button" class="btn btn-primary" onclick="revisarCampos()" name="btnguardar" id="btnguardar">Registrar empleado</button>
                                     </div>
                                 </div>
                             </form>
@@ -212,6 +210,35 @@
             theme: 'snow'
         });
         */
+
+
+
+
+
+        $(document).ready(function(){
+        $('#btnguardar').click(function(){
+            var datos=$('#formulario').serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "empleados_ingresar_pr.php",
+                data: datos,
+                success:function(r){
+                    if(r==1){
+                        alert("SE AGREGO EXITOSAMENTE");
+                        window.location.href = "empleados_ingresar.php";
+
+                    }
+                    else{
+                        alert("LOS CAMPOS ESTAN VACIOS");
+                    }
+                }
+
+            });
+            return false;
+      });
+    });
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
