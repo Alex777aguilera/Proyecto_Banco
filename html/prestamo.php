@@ -301,7 +301,7 @@ function dato(plazo) {
     }else if(plazo == 2){
         Vtasa = 0.24;
     }else if(plazo == 3){
-        Vtasa = 0.32;
+        Vtasa = 0.36;
     }else if(plazo == 4){
         Vtasa = 0.48;
     }else if(plazo == 5){
