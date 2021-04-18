@@ -14,7 +14,7 @@
                 $id = $_GET['id'];
                 
                 require_once "conexion.php";
-                $sql = "SELECT u.idUsuario, u.username,u.password,r.idRegistroEmpleado FROM usuario u INNER JOIN registroempleado r ON u.idRegistroEmpleado = r.idRegistroEmpleado WHERE u.idUsuario = $id";
+                $sql = "SELECT u.idUsuario, u.username,u.password,r.nombres FROM usuario u INNER JOIN registroempleado r ON u.idRegistroEmpleado = r.idRegistroEmpleado WHERE u.idUsuario = $id";
                 if($result = mysqli_query($con,$sql)){
                     if(mysqli_num_rows($result) > 0)
                     {
@@ -23,7 +23,7 @@
                                         $id = $row['idUsuario'];
                                         $usuario  = $row['username'];
                                         $contra = $row['password'];
-                                        $empleado  = $row['idRegistroEmpleado'];
+                                        $empleado  = $row['nombres'];
 
                                     }
                         mysqli_free_result($result);;
@@ -98,7 +98,7 @@
                                     <label class="col-md-3 mt-3">Empelado</label>
                                     <div class="col-md-9" id="empleado">
                                         <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="empelado">
-                                            <option value="<?php echo $empleado ?>">--Seleccionar--</option>
+                                            <option value=""><?php echo $empleado ?></option>
                                             <?php
                                             require_once "conexion.php";
 

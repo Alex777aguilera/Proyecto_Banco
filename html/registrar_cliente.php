@@ -93,8 +93,8 @@
                                     </div>
                                     <div class="col-md-5">
                                         <div class="input-group">
-                                            <input name="ingreso" type="text" class="form-control"  required placeholder="lps,5.000"
-                                                aria-label="Recipient 's username" aria-describedby="basic-addon2" id="ingresos">
+                                            <input name="ingreso" type="text" class="form-control"   placeholder="lps,5.000"
+                                                aria-label="Recipient 's username" aria-describedby="basic-addon2" id="ingresos" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">HN</span>
                                             </div>
@@ -108,7 +108,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 mt-3">Genero</label>
                                     <div class="col-md-3" id="genero">
-                                        <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="genero">
+                                        <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="genero" required>
                                             <option value="">--Seleccionar--</option>
                                             <?php
                                             require_once "conexion.php";
@@ -128,8 +128,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <input name="montoInicial" type="text" class="form-control"  required placeholder="Lps.1000"
-                                                    aria-label="Recipient 's username" aria-describedby="basic-addon2" id="montoInicial">
+                                                <input name="montoInicial" type="text" class="form-control"   placeholder="Lps.1000"
+                                                    aria-label="Recipient 's username" aria-describedby="basic-addon2" id="montoInicial" required >
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">HN</span>
                                                 </div>

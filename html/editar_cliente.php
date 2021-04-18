@@ -145,7 +145,7 @@
                                     <label class="col-md-3 mt-3">Genero</label>
                                     <div class="col-md-9" id="genero">
                                         <select class="select2 form-select shadow-none"style="width: 100%; height:36px;" name="genero">
-                                            <option value="">--Seleccionar--</option>
+                                            <option value=""><?php echo $genero ?></option>
                                             <?php
                                             require_once "conexion.php";
 
