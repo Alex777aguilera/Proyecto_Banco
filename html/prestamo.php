@@ -48,7 +48,7 @@
                                     <div class="col-md-5">
 
                                         <select class="select2 form-select shadow-none"
-                                            style="width: 100%; height:36px;" name="idCuenta" id="idCuenta" required="">
+                                            style="width: 100%; height:36px;" name="idCuenta" id="idCuenta" required="" onchange="numer(this.value);">
                                             <option value="">--- Seleccione ---</option>
                                             <optgroup label='Cuenta'>
                                             <?php 
@@ -78,6 +78,7 @@
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" id="monto"onkeypress="return soloNumeros(event)"
                                                 placeholder="monto" name="monto" required="">
+                                                
                                         </div>
 
                                 </div>
@@ -110,17 +111,15 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
+
                                         <button class="btn btn-primary" id="enviar">Agregar</button>
+                                        
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                </div>
-            </div>
-	     	
-	    </div>
-        <!--  -->
-        <?php 
+                            
+                                <div class="card-body">
+                                     <?php 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                
                 
@@ -206,8 +205,17 @@
                             $sql = "INSERT INTO `plandepago` (`idPrestamo`, `numeroCuota`, `monto`, `intereses`, `letraMensual`,`saldo`, `fechaPago`, `estadoLetra`)
                             VALUES ('$ultimo_id', $i,".(double)$cuota.",".(double)$interesMensual.",$abonoCapital,$saldo,'$fechaIni',0)";
                             mysqli_query($con, $sql);
+
+                            
                         }
                         // echo 'Datos Guardados<br>'; 
+                         if (mysqli_query($con, $sql)) {
+                            echo "<a href='pdfprestamo.php?idP=$ultimo_id' class='btn btn-success'target='_blank' style='color: white;'>Generar pdf</a>";
+
+                            } else {
+                                // header('location: prestamo.html?mensaje="error"');
+                                // exit();
+                            }
                     } catch (\Throwable $th) {
                         // echo "Reventó";
                     }
@@ -224,6 +232,18 @@
             
 
          ?>
+                                
+                            </div>
+                        </div>
+                </div>
+            </div>
+	     	
+                <div id="Tabla">
+                     
+            </div>
+	    </div>
+        <!--  -->
+        
 
         <?php require_once('footer.php'); ?>
     </div>
@@ -253,6 +273,18 @@ $('#idCuenta').change(function(e){
   
  });
 
+
+// function numer(numero){
+   
+//      <?php $variable = 1; ?>
+//       var php = "<?php echo $variable; ?>";
+//        alert(php);
+//     <?php $consul = "SELECT * FROM cuenta as c INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente WHERE idCuenta = '1'";
+
+//      ?>
+    
+    
+// }
 
 function dato(plazo) {
     
@@ -314,31 +346,26 @@ function soloNumeros(e)
         //***********************************//
         $(".select2").select2();
 
+$(actabla());
 
-// $(document).ready(function(){
-//           $("#enviar").click(function(){
-//             var formulario = $("#formulario").serialize();
-//             $.ajax({
-//               type: "POST",
-//               url: "Tprestamo.php",
-//               data: formulario,
-
-//               success:function(r){
-//                     if(r==1){
-//                         alert("SE AGREGO EXITOSAMENTE");
-                        
-                        
-//                     }
-//                     else{
-//                         alert("LOS CAMPOS ESTAN VACIOS");
-//                     }
-//                 }
-
-//             });
-//             return false;
-
-//           });
-          
-//         });
+//-- actualizar tabla --
+function actabla(query)
+{
+    $.ajax(
+        {
+            url: 'Tprestamo.php',
+            type: 'POST',
+            dataType: 'html',
+            data: {query, query},
+        })
+        .done(function(resp)
+        {
+            $("#Tabla").html(resp);
+        })
+        .fail(function()
+        {
+            console.log("Error");
+        })
+}
 
  </script>

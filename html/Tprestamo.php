@@ -2,7 +2,7 @@
 require_once "conexion.php";
 
                         // Tabla registros
-                        $sql = "SELECT * FROM `prestamos` as pr 
+                        $sql = "SELECT pr.plazo, pr.idPrestamo, rc.nombres, rc.apellidos, c.idCuenta, pr.monto, pr.fechaInicioPrestamo, pr.tasa, rc.ingresosTotales FROM `prestamos` as pr 
                                                     INNER JOIN cuenta as c ON pr.idCuenta = c.idCuenta
                                                     INNER JOIN registrocliente as rc ON c.idRegistroCliente = rc.idRegistroCliente";
                         if($result = mysqli_query($con, $sql)){
@@ -16,12 +16,14 @@ require_once "conexion.php";
                                     echo "<thead>";
                                         echo "<tr>";
                                             echo "<th>Codigo-prestamos</th>";
-                                            echo "<th>Nombre Cliente</th>";
+                                            echo "<th>Nombre del  Cliente</th>";
                                             echo "<th>Cuenta</th>";
                                             echo "<th>Monto</th>";
-                                            echo "<th>Fecha</th>";
+                                            echo "<th>Fecha de Prestamo</th>";
                                             echo "<th>Plazo</th>";
                                             echo "<th>Intereses</th>";
+                                            echo "<th>Ingresos Totales</th>";
+                                            echo "<th>Acciones</th>";
                                         echo "</tr>";
                                     echo "</thead>";
                                     echo "<tbody>";
@@ -34,6 +36,10 @@ require_once "conexion.php";
                                             echo "<td>" . $row['fechaInicioPrestamo'] . "</td>";
                                             echo "<td>" . $row['plazo'] . " años</td>";
                                             echo "<td>" . $row['tasa'] . "</td>";
+                                            echo "<td>" . $row['ingresosTotales'] . "</td>";
+                                            echo "<td>";
+                                                 echo "<a href='pdfprestamo.php?idP=". $row['idPrestamo'] ."' target='_blank'title='PDF' data-toggle='tooltip'><span class='fas fa-file-pdf'></span></a>";
+                                            echo "</td>";
                                         echo "</tr>";
                                     }
                                     echo "</tbody>";
